@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
 
+
 import { signIn } from "next-auth/react";
 import DotLoaderSpinner from "../loaders/dotLoader/DotLoaderSpinner";
 
@@ -137,7 +138,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                             }
                             return (
                                 <div
-                                    onClick={() => signIn()}
+                                    onClick={() => signIn(provider.id)}
                                     key={provider.name}
                                     className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 md:mt-1 mx-2 cursor-pointer"
                                 >

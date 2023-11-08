@@ -27,14 +27,22 @@ export default SignIn;
 export const getServerSideProps = async (context: any) => {
     const { req, query } = context;
     
-    const callbackUrl = query ? query : "/";
+    let callbackUrl = null;
+    if (query) {
+        callbackUrl = query.callbackUrl
+        
+    }
 
 
-    console.log('call:',callbackUrl, query)
+    // console.log('call:',callbackUrl, query)
 
     const session = await getSession({req});
 
     if (session) {
+
+
+        
+        
         if (callbackUrl) {
             return {
                 redirect: {
