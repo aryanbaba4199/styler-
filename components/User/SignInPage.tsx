@@ -20,7 +20,7 @@ const initialUser = {
 };
 
 const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
-    providers = Object.values(providers);
+    
     const [loading, setLoading] = useState(false);
     const [needHelp, setNeedHelp] = useState(false);
     const [user, setUser] = useState(initialUser);
