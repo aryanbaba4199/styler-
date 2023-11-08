@@ -8,6 +8,7 @@ import LoginInput from "./LoginInput";
 import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
+import GoogleProvider from "next-auth/providers/google"
 
 
 import { signIn } from "next-auth/react";
@@ -135,7 +136,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                     <div className="flex flex-col md:flex-row">
                         {providers.map((provider: any) => {
                             if (provider.name === "Credentials") {
-                                return;
+                                return ;
                             }
                             return (
                                 <div

@@ -4,6 +4,7 @@ import MenuSideBar from "@/components/Header/MenuSidebar";
 import SignInPage from "@/components/User/SignInPage";
 
 import { getProviders, getCsrfToken, getSession } from "next-auth/react";
+import GoogleProvider from "next-auth/providers/google"
 
 
 export const getServerSideProps = async (context: any) => {
@@ -45,6 +46,14 @@ export const getServerSideProps = async (context: any) => {
     const csrfToken = csrfTokenDummy?.toString();
     
     let providers = await getProviders();
+    if (!providers) {
+        providers.push(
+          GoogleProvider({
+            clientId: process.env.GOOGLE_ID,
+            clientSecret: process.env.GOOGLE_SECRET,
+          })
+        );
+      }
    
     console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
     
@@ -61,6 +70,7 @@ export const getServerSideProps = async (context: any) => {
 const SignIn = ({ providers, csrfToken, callbackUrl }: any) => {
     if (!providers) {
         providers = []; 
+        console.log("Providers: ", providers);
       }
     
       providers = Object.values(providers);
