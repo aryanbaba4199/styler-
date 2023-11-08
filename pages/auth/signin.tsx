@@ -27,7 +27,7 @@ export default SignIn;
 export const getServerSideProps = async (context: any) => {
     const { req, query } = context;
     
-    let callbackUrl = null;
+    let callbackUrl = "";
     if (query) {
         let getcall = query.callbackUrl.toString();
 
