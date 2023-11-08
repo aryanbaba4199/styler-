@@ -21,7 +21,8 @@ const initialUser = {
 };
 
 const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
-
+    console.log("provider", providers);
+    
     const [loading, setLoading] = useState(false);
     const [needHelp, setNeedHelp] = useState(false);
     const [user, setUser] = useState(initialUser);
@@ -68,7 +69,6 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
             return Router.push(callbackUrl || "/");
         }
     };
-
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
@@ -134,35 +134,29 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                     </div>
 
                     <div className="flex flex-col md:flex-row">
-                        {providers.length === 0 ? (
-                            <button className="text-sm w-full font-semibold ml-2" onClick={()=> signIn}>Google</button>
-                        ) : (
-                            // Render provider buttons if there are providers
-                            providers.map((provider: any) => {
-                                if (provider.name === "Credentials") {
-                                    return;
-                                }
-                                return (
-                                    <div
-                                        onClick={() => signIn(provider.id)}
-                                        key={provider.name}
-                                        className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 md:mt-1 mx-2 cursor-pointer"
-                                    >
-                                        <Image
-                                            src={`/../public/assets/images/${provider.id}.png`}
-                                            alt={provider.name}
-                                            width={28}
-                                            height={28}
-                                        />
-                                        <div className="text-sm w-full font-semibold ml-2">
-                                            Sign in with {provider.name}
-                                        </div>
+                        {providers.map((provider: any) => {
+                            if (provider.name === "Credentials") {
+                                return;
+                            }
+                            return (
+                                <div
+                                    onClick={() => signIn(provider.id)}
+                                    key={provider.name}
+                                    className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 md:mt-1 mx-2 cursor-pointer"
+                                >
+                                    <Image
+                                        src={`/../public/assets/images/${provider.id}.png`}
+                                        alt={provider.name}
+                                        width={28}
+                                        height={28}
+                                    />
+                                    <div className="text-sm w-full font-semibold ml-2">
+                                        Sign in with {provider.name}
                                     </div>
-                                );
-                            })
-                        )}
+                                </div>
+                            );
+                        })}
                     </div>
-
 
                     <div
                         onClick={() => setNeedHelp(!needHelp)}
@@ -170,8 +164,9 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                     >
                         <div className="flex items-center">
                             <ChevronRightIcon
-                                className={`h-3 text-gray-500" ${needHelp && "rotate-90"
-                                    }`}
+                                className={`h-3 text-gray-500" ${
+                                    needHelp && "rotate-90"
+                                }`}
                             />
                             <span className="text-blue-500 hover:text-amazon-orange hover:underline ml-1">
                                 Need help?

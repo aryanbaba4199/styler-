@@ -48,7 +48,7 @@ export const getServerSideProps = async (context: any) => {
     let providers = await getProviders();
     
    
-    console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
+    // console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
     
     return{
         props: {
@@ -62,8 +62,7 @@ export const getServerSideProps = async (context: any) => {
 
 const SignIn = ({ providers, csrfToken, callbackUrl }: any) => {
     if (!providers) {
-        providers = []; 
-        console.log("Providers: ", providers);
+        providers = providers;
       }
     
       providers = Object.values(providers);
