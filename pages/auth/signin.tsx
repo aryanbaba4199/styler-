@@ -31,16 +31,24 @@ export const getServerSideProps = async (context: any) => {
 
     const session = await getSession({req});
 
-    if(session) {
-        return {
-            redirect: {
-                destination: callbackUrl
-            }
+    if (session) {
+        if (callbackUrl) {
+            return {
+                redirect: {
+                    destination: callbackUrl // Assuming callbackUrl is a string
+                }
+            };
+        } else {
+            return {
+                redirect: {
+                    destination: '/' // Redirect to a default URL
+                }
+            };
         }
     }
     const csrfToken = await getCsrfToken(context);
     const providers = await getProviders();
-
+    
     return{
         props: {
             providers,

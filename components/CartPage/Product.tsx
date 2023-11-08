@@ -102,7 +102,7 @@ const Product = ({ product, selected, setSelected, cart }: any) => {
                 </div>
                 <div className="flex flex-col md:flex-row md:items-center">
                     <span className="font-bold md:text-xl">
-                        USD{(product.price * product.qty).toFixed(2)} $
+                        USD{(product.price * product.qty).toFixed(2)}
                     </span>
                     <span className="ml-2 text-sm line-through text-slate-400">
                         USD{(product.priceBefore * product.qty).toFixed(2)} $
