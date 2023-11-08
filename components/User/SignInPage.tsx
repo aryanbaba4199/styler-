@@ -21,7 +21,7 @@ const initialUser = {
 };
 
 const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
-    console.log("provider", providers);
+    
     
     const [loading, setLoading] = useState(false);
     const [needHelp, setNeedHelp] = useState(false);
@@ -69,6 +69,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
             return Router.push(callbackUrl || "/");
         }
     };
+    
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}

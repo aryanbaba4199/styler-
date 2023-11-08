@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 
+
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "./lib/mongodb"
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -11,6 +12,7 @@ import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
 db.connectDb();
+
 
 export const authOptions = {
     adapter: MongoDBAdapter(clientPromise),
