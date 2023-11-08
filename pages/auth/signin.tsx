@@ -59,9 +59,12 @@ export const getServerSideProps = async (context: any) => {
             };
         }
     }
-    const csrfToken = await getCsrfToken(context);
-    const providers = await getProviders();
-    // console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
+    const csrfTokenDummy = await getCsrfToken(context);
+    const csrfToken = csrfTokenDummy?.toString();
+    
+    let providers = await getProviders();
+   
+    console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
     
     return{
         props: {
