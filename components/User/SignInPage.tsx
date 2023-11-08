@@ -27,7 +27,8 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
     const [needHelp, setNeedHelp] = useState(false);
     const [user, setUser] = useState(initialUser);
     const { login_email, login_password, login_error } = user;
-
+    console.log("bkjsdf", providers);
+    console.log("user", providers);
     const handleChange = (e: any) => {
         e.preventDefault();
         const { name, value } = e.target;

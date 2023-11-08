@@ -3,11 +3,13 @@ import Header from "@/components/Header/Header";
 import MenuSideBar from "@/components/Header/MenuSidebar";
 import SignInPage from "@/components/User/SignInPage";
 
+
 import { getProviders, getCsrfToken, getSession } from "next-auth/react";
 import GoogleProvider from "next-auth/providers/google"
 
 
 export const getServerSideProps = async (context: any) => {
+    
     const { req, query } = context;
     
     let callbackUrl = "";
@@ -60,7 +62,8 @@ export const getServerSideProps = async (context: any) => {
 }
 
 
-const SignIn = ({ providers, csrfToken, callbackUrl }: any) => {
+const SignIn = async({ providers, csrfToken, callbackUrl }: any) => {
+    await providers;
     if (!providers) {
         providers = [];
       }
