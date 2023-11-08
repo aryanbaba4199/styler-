@@ -29,7 +29,9 @@ export const getServerSideProps = async (context: any) => {
     
     let callbackUrl = null;
     if (query) {
-        callbackUrl = query.callbackUrl
+        let getcall = query.callbackUrl.toString();
+
+        callbackUrl = getcall;
         
     }
 
