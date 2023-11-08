@@ -5,12 +5,18 @@ import SignInPage from "@/components/User/SignInPage";
 
 
 import { getProviders, getCsrfToken, getSession } from "next-auth/react";
+
 import GoogleProvider from "next-auth/providers/google"
+
 
 
 export const getServerSideProps = async (context: any) => {
     
     const { req, query } = context;
+   
+
+
+   
     
     let callbackUrl = "";
     if (query) {
@@ -62,8 +68,8 @@ export const getServerSideProps = async (context: any) => {
 }
 
 
-const SignIn = async({ providers, csrfToken, callbackUrl }: any) => {
-    await providers;
+const SignIn = ({ providers, csrfToken, callbackUrl }: any) => {
+    
     if (!providers) {
         providers = [];
       }

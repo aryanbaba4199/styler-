@@ -2,12 +2,13 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import amazonLogoDark from "../../public/assets/images/amazon-dark.png";
 import LoginInput from "./LoginInput";
 import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
+import { getProviders } from "next-auth/react";
 import GoogleProvider from "next-auth/providers/google"
 
 
@@ -22,13 +23,25 @@ const initialUser = {
 
 const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
     
-    
+    const [provid, setprovid] = useState(providers);
     const [loading, setLoading] = useState(false);
     const [needHelp, setNeedHelp] = useState(false);
     const [user, setUser] = useState(initialUser);
     const { login_email, login_password, login_error } = user;
-    console.log("bkjsdf", providers);
-    console.log("user", providers);
+    
+    useEffect(() => {
+        (async () => {
+          const res = await getProviders();
+          if(providers.length===0){
+            setprovid(res);
+          }
+          
+        })();
+      }, []);
+
+
+
+
     const handleChange = (e: any) => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -136,7 +149,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                     </div>
 
                     <div className="flex flex-col md:flex-row">
-                        {providers.map((provider: any) => {
+                        {provid.map((provider: any) => {
                             if (provider.name === "Credentials") {
                                 return;
                             }
