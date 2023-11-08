@@ -16,7 +16,7 @@ export default function Home({ products }: any) {
                 <CarouselContainer />
                 <CategoriesProduct products={products} />
                 <div className="z-10 relative">
-                    <HomeProductSwiper products={products} category="women clothing" />
+                    <HomeProductSwiper products={products} category="Jeans" />
                     <HomeProductSwiper products={products} category="shoes" />
                     <HomeProductSwiper products={products} category="Beauty" />
                     <HomeProductSwiper products={products} category="Kids" />
@@ -30,7 +30,7 @@ export default function Home({ products }: any) {
 
 export const getServerSideProps = async (context: any) => {
     db.connectDb();
-    const products = await Product?.find()
+    const products = await Product.find()
         .populate({ path: "category", model: Category })
         .sort({ updatedAt: -1 })
         .lean();
