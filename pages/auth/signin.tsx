@@ -46,14 +46,7 @@ export const getServerSideProps = async (context: any) => {
     const csrfToken = csrfTokenDummy?.toString();
     
     let providers = await getProviders();
-    if (!providers) {
-        providers.push(
-          GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET,
-          })
-        );
-      }
+    
    
     console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
     
