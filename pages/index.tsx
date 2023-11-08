@@ -11,7 +11,7 @@ import db from "../utils/db";
 export default function Home({ products }: any) {
     return (
         <>
-            {/* <Header title="Full Amazon Clone React" /> */}
+            <Header title="Full Amazon Clone React" />
             <main className="max-w-screen-2xl mx-auto bg-gray-100">
                 <CarouselContainer />
                 <CategoriesProduct products={products} />
@@ -30,7 +30,7 @@ export default function Home({ products }: any) {
 
 export const getServerSideProps = async (context: any) => {
     db.connectDb();
-    const products = await Product.find()
+    const products = await Product?.find()
         .populate({ path: "category", model: Category })
         .sort({ updatedAt: -1 })
         .lean();
