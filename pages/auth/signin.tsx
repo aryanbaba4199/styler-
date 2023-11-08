@@ -26,8 +26,11 @@ export default SignIn;
 
 export const getServerSideProps = async (context: any) => {
     const { req, query } = context;
-    const { callbackUrl = null } = query || null;
-    // console.log('call:',callbackUrl, query, context)
+    
+    const callbackUrl = query ? query : "/";
+
+
+    console.log('call:',callbackUrl, query)
 
     const session = await getSession({req});
 
@@ -48,6 +51,7 @@ export const getServerSideProps = async (context: any) => {
     }
     const csrfToken = await getCsrfToken(context);
     const providers = await getProviders();
+    // console.log("Provider" + providers, "CSRFToken", csrfToken, "callbackUrl", callbackUrl);
     
     return{
         props: {

@@ -25,6 +25,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
     const { login_email, login_password, login_error } = user;
 
     const handleChange = (e: any) => {
+        e.preventDefault();
         const { name, value } = e.target;
         setUser({
             ...user,
@@ -136,7 +137,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                             }
                             return (
                                 <div
-                                    onClick={() => signIn(provider.id)}
+                                    onClick={() => signIn()}
                                     key={provider.name}
                                     className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 md:mt-1 mx-2 cursor-pointer"
                                 >
