@@ -118,7 +118,7 @@ const Infos = ({ product, setActiveImg }: any) => {
         <div className="flex flex-col row-span-3 md:col-span-3 max-md:px-2 mb-4">
             <h1 className="text-2xl font-bold ">{product.name}</h1>
             <div className="flex items-center ">
-                <span className="cursor-pointer uppercase hover:underline text-sm mr-3 text-slate-600">
+                <span className="cursor-pointer uppercase hover:underline text-sm font-semibold mr-3 text-slate-600">
                     {product.brand}
                 </span>
                 <Rating
@@ -136,19 +136,21 @@ const Infos = ({ product, setActiveImg }: any) => {
             <div className="flex w-full bg-slate-200 h-[1px]" />
 
             <div className="mt-2 flex items-center">
-                <div className="text-4xl font-semibold text-red-500">
-                    {!size ? `${product.priceRange}` : `${product.price}$`}
+                <div className="text-2xl  text-lime-700">
+                    {!size ? `${product.priceRange}` : 
+                    <text className=" font-semibold text-lime-600 ">{product.price}</text>
+                    }
                 </div>
 
                 {product.discount > 0 ? (
-                    <div className="ml-2  text-slate-400">
+                    <div className="ml-2 font-semibold  text-slate-800">
                         {size && (
                             <span className=" text-xl line-through">
                                 {product.priceBefore}
                             </span>
                         )}
                         <span className="ml-1 text-blue-500">
-                            (-{product.discount}%)
+                            ({product.discount}%)
                         </span>
                     </div>
                 ) : (
@@ -158,12 +160,9 @@ const Infos = ({ product, setActiveImg }: any) => {
 
             <div className="mt-1  text-sm text-slate-500">
                 {size
-                    ? product.quantity
-                    : product.sizes.reduce(
-                          (start: any, next: any) => start + next.qty,
-                          0
-                      )}{" "}
-                pieces Available
+                    ? "Buy 20 Pieces to Ger More Discount"
+                    : "Buy More Get More Discount"
+                }
             </div>
 
             <p className=" mt-3  text-sm">{product.description}</p>

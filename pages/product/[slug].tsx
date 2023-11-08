@@ -56,15 +56,14 @@ export const getServerSideProps = async (context: any) => {
                       prices[prices.length - 1] -
                       prices[prices.length - 1] / subProduct.discount
                   ).toFixed(2)} `
-                : `From ${prices[0]} to ${prices[prices.length - 1]}$`,
+                : `From ${prices[0]} to ${prices[prices.length - 1]}/-`,
         price:
             subProduct.discount > 0
                 ? (
-                      subProduct.sizes[size].price -
-                      subProduct.sizes[size].price / subProduct.discount
+                    subProduct.sizes[size].price
                   ).toFixed(2)
                 : subProduct.sizes[size].price,
-        priceBefore: subProduct.sizes[size].price,
+        priceBefore: subProduct.sizes[size].price * subProduct.discount/100 +700,
         quantity: subProduct.sizes[size].qty,
         ratings: [
             {

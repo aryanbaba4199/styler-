@@ -1,10 +1,21 @@
 import { LockClosedIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid"
+import Styler from "../../public/assets/images/amazon-logo.png"
+
 
 const InfosShipping = ({ product }: any) => {
+    const currDate = new Date();
+const shippingDate = new Date();
+shippingDate.setDate(currDate.getDate() + 7);
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedShippingDate = shippingDate.toLocaleDateString(undefined, options);
+
+console.log(formattedShippingDate);
+
     return (
         <div className="max-h-96 rounded-lg border border-gray-300 p-3 flex flex-col row-span-2 md:col-span-2">
-            <div className="mb-3 font-semibold">${product.price}</div>
+            
 
             <div className="text-slate-600 text-sm">
                 <p>No Import Fees Deposit</p>
@@ -23,7 +34,7 @@ const InfosShipping = ({ product }: any) => {
 
             <div>
                 <p>
-                    Delivery <b>Thursday, March 23</b>. Order within{" "}
+                    Delivery <b>{formattedShippingDate}</b>. Order within{" "}
                     <span className="text-green-500">23 hrs 53 mins</span>
                 </p>
             </div>
@@ -31,7 +42,7 @@ const InfosShipping = ({ product }: any) => {
             <div className="flex items-center my-2">
                 <MapPinIcon className="w-4 h-4 mr-1" />
                 <p className="text-sm text-blue-500 cursor-pointer hover:text-amazon-orange">
-                    Deliver to Germany
+                    Deliver to India
                 </p>
             </div>
 
@@ -56,17 +67,20 @@ const InfosShipping = ({ product }: any) => {
                 <tbody>
                     <tr className="grid grid-cols-3">
                         <td className="text-slate-500">Ships from</td>
-                        <td className="col-span-2">Amazon</td>
+                        <td className="col-span-2">
+                            <text className="text-red-600 font-semibold">S</text>
+                            tyler</td>
                     </tr>
                     <tr className="grid grid-cols-3">
                         <td className="text-slate-500">Sold by</td>
-                        <td className="col-span-2">ATUAT</td>
+                        <td className="col-span-2">
+                            <text className="text-red-600 font-semibold">S</text>
+                            tyler</td>
                     </tr>
                     <tr className="grid grid-cols-3">
-                        <td className="text-slate-500">Returns</td>
+                        <td className="text-slate-500">Deal</td>
                         <td className="col-span-2 truncate">
-                            Eligible for Return, Refund or Replacement within 30
-                            days of receipt
+                            Final
                         </td>
                     </tr>
                 </tbody>

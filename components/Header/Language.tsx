@@ -7,11 +7,11 @@ const Language = () => {
     return ( 
         <div className="show-account relative hidden md:flex items-center link self-end mb-1.5">
             <div className="relative w-6 h-6">
-                <Image
-                    src={enFlag}
+                <img
+                    src="https://cdn-icons-png.flaticon.com/256/321/321238.png"
                     alt="flag-country"
                     className="object-contain"
-                    fill
+                    
                 />
             </div>
             <p className="flex ml-2 font-bold text-sm">
@@ -25,21 +25,10 @@ const Language = () => {
                     <p className="text-xs text-gray-900 my-2">Change Language <a className="text-[#05a] ml-1" href="">Learn more</a></p>
                     <label className=" flex text-xs text-gray-900 mt-2 " htmlFor="">
                         <input className="mr-2 text-amazon-orange" defaultChecked={true} type="radio" name="" id="" />
-                        English - EN
+                        English - India
                     </label>
                     <div className="w-full h-[1px] bg-gray-200 my-2" />
-                    <label className=" flex text-xs text-gray-900 mt-2 " htmlFor="">
-                        <input className="mr-2 text-amazon-orange" type="radio" name="" id="" />
-                        español - ES
-                    </label>
-                    <label className=" flex text-xs text-gray-900 mt-2 " htmlFor="">
-                        <input className="mr-2 text-amazon-orange" type="radio" name="" id="" />
-                        العربية - AR
-                    </label>
-                    <label className=" flex text-xs text-gray-900 mt-2 " htmlFor="">
-                        <input className="mr-2 text-amazon-orange" type="radio" name="" id="" />
-                        Deutsch - DE
-                    </label>
+                    
                 </div>
                 
             </div>
