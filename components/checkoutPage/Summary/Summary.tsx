@@ -110,7 +110,7 @@ const Summary = ({
 
                             <div className="mx-3 flex flex-col">
                                 <span>
-                                    Total: <b>{cart.cartTotal}$</b>
+                                    Total: <b>{cart.cartTotal}/-</b>
                                 </span>
                                 {discount && (
                                     <span className="bg-green-600 p-2 my-2 text-white rounded-xl">
@@ -121,7 +121,7 @@ const Summary = ({
                                     totalAfterDiscount != "" && (
                                         <span>
                                             New Price:{" "}
-                                            <b>{totalAfterDiscount}$</b>
+                                            <b>{totalAfterDiscount}</b>
                                         </span>
                                     )}
                             </div>

@@ -30,7 +30,7 @@ const ListShipping = ({
 
     return (
         <>
-            {addresses.map((address: any) => (
+            {addresses?.map((address: any) => (
                 <div
                     className={`relative cursor-pointer p-4 mb-4 border border-slate-100 rounded-xl shadow-md hover:shadow-xl hover:border-white hover:scale-[101%] transition duration-300 ${
                         address.active &&
@@ -51,7 +51,7 @@ const ListShipping = ({
                     )}
                     <div className="grid grid-cols-2 justify-center">
                         <div className="mb-4">
-                            <Image
+                            <img
                                 src={profile ? user.user?.image : user.image}
                                 alt={address._id}
                                 width={60}

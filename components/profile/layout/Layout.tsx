@@ -2,6 +2,7 @@ import Header from "@/components/Header/Header";
 import Sidebar from "../sidebar/Sidebar";
 
 const Layout = ({ user, tab, title, children }: any) => {
+    console.log("Layou", children);
     // console.log(session);
     return (
         <>

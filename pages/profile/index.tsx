@@ -3,6 +3,7 @@ import db from "@/utils/db";
 import { getSession } from "next-auth/react";
 
 const Profile = ({ user, tab, orders }: any) => {
+    
     return (
         <>
             <Layout user={user} tab={tab} title={`${user.name}'s Profile`}>

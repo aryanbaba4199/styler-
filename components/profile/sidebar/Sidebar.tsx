@@ -3,10 +3,11 @@ import Item from "./Item";
 import { profile } from "./profile";
 
 const Sidebar = ({ data }: any) => {
+    
     return (
         <div>
             <div className="flex flex-col items-center ">
-                <Image
+                <img
                     src={data.image}
                     alt={data.name}
                     width={100}

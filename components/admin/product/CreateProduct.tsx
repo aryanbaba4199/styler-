@@ -18,6 +18,11 @@ import dataURItoBlob from "../../../utils/dataURItoBlob";
 import { uploadImages } from "../../../request/upload";
 import axios from "axios";
 import { useState } from "react";
+import Jimp from 'jimp';
+import  Resizer  from 'react-image-file-resizer';
+
+console.log(Jimp);
+
 
 type Color = string;
 
@@ -70,6 +75,9 @@ const CreateProduct = ({
     const createProductHnadler = async () => {
         setLoading(true);
         if (images) {
+            console.log(images);
+            // Here have to perform image resize
+            
             let temp = images.map((img: any) => {
                 return dataURItoBlob(img);
             });
@@ -108,7 +116,7 @@ const CreateProduct = ({
             dispatch(
                 showDialog({
                     header: "post created.",
-                    msgs:[{
+                    msgs: [{
                         msg: data.message,
                         type: "success",
                     }],

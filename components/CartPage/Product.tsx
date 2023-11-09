@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import { updateCart } from "../../redux/slices/CartSlice";
 
 const Product = ({ product, selected, setSelected, cart }: any) => {
-    console.log(product);
+    
+    
     
     const dispatch = useAppDispatch();
     const {cartItems} = cart;

@@ -1,28 +1,23 @@
 export const paymentMethods = [
     {
-        name: "Paypal",
-        id: "paypal",
-        description: "If you don't have a paypal account, you can also pay via paypal with your creadit card or bank devit card.",
-        images: [],
+        name: "UPI",
+        id: "upi",
+        description: "GooglePay, PhonePay, Paytm, etc",
+        images: "",
     },
     {
-        name: "Creadit cart",
+        name: "Cards",
         id: "credit_card",
-        description: "",
+        description: "Credit Card, Debit Card",
         images: [
             "visa",
             "mastedcard",
-            "paypal",
-            "maestro",
-            "american_express",
-            "cb",
-            "jcb",
         ],
     },
     {
-        name: "Cash",
+        name: "Cash On Delivery",
         id: "cash",
-        description: "If you don't have a paypal account, you can also pay via paypal with your creadit card or bank devit card.",
+        description: "Cash on Delivery ",
         images: [],
     },
 ]

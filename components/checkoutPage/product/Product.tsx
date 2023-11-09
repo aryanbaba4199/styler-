@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Product = ({ cart }: any) => {
-    // console.log("cart", cart);
+    console.log("cart", cart);
     return (
         // <div className="flex flex-col md:flex-row px-2 py-1 md:px-8 gap-4">
         <div>
@@ -28,18 +28,17 @@ const Product = ({ cart }: any) => {
                                         : ""
                                 }`}`}
                             >
-                                <Image
+                                <img
                                     src={product.image}
                                     alt={product.name}
-                                    fill
-                                    // width={90}
+                                                                        // width={90}
                                     // height={90}
                                     className="rounded-md object-contained cursor-pointer"
                                 />
                             </Link>
                         </div>
                         <div className=" w-fit  text-sm flex items-center  space-x-3 pr-5 my-2  bg-slate-100 rounded-full">
-                            <Image
+                            <img
                                 src={product.color.image}
                                 alt={product.name}
                                 width={30}
@@ -59,13 +58,13 @@ const Product = ({ cart }: any) => {
                                 : product.name}
                         </div>
                         <div className="text-sm">
-                            {(product.price * product.qty).toFixed(2)}$
+                            {(product.price * product.qty)}/-
                         </div>
                     </div>
                 ))}
             </div>
             <div className="my-4 border-t pt-2">
-                Subtotal: <span className="font-bold">{cart.cartTotal}$</span>
+                Subtotal: <span className="font-bold">{cart.cartTotal}/-</span>
             </div>
         </div>
         // </div>

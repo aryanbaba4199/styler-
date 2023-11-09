@@ -2,6 +2,8 @@ import { Form, Formik } from "formik";
 
 import * as Yup from "yup";
 import "yup-phone";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ShippingInput from "./ShippingInput";
 import { countries } from "./countries";
@@ -73,13 +75,17 @@ const AddShipping = ({
     };
 
     const submitHandler = async () => {
+        toast("Shipping Address Saved...")
         const res = await saveAddress(shipping);
         setAddresses(res.address);
         setSelectedAddress(initialValue);
         setShipping(initialValue);
+        window.location.reload();
+        
     };
 
     return (
+        <>
         <Formik
             enableReinitialize
             initialValues={{
@@ -169,7 +175,10 @@ const AddShipping = ({
                     </button>
                 </Form>
             )}
+            
         </Formik>
+        <ToastContainer/>
+        </>
     );
 };
 

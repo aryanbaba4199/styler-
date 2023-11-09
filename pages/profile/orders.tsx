@@ -45,7 +45,7 @@ const Orders = ({ user, tab, orders }: any) => {
                                     <td>{order._id}</td>
                                     <td className="flex">
                                         {order.products.map((p: any) => (
-                                            <Image
+                                            <img
                                                 key={p._id}
                                                 src={p.image}
                                                 alt={p.name}

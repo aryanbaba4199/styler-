@@ -14,6 +14,8 @@ import Summary from "@/components/checkoutPage/Summary/Summary";
 import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
 const Checkout = ({ cart, user }: any) => {
+    console.log("Checkout", cart);
+    
     const [addresses, setAddresses] = useState(user?.address || []);
     const [paymentMethod, setPaymentMethod] = useState("paypal");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState("");

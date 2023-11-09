@@ -27,6 +27,7 @@ const CartPage = ({ cart }: any) => {
                 const { data } = await axios.post(`/api/user/updatecart`, {
                     products: cart.cartItems,
                 });
+                console.log("data =", data);
                 dispatch(updateCart(data));
                 // console.log("update cart > ", data);
             };
@@ -46,7 +47,7 @@ const CartPage = ({ cart }: any) => {
                         total + Number(product.shipping),
                     0
                 )
-                .toFixed(2)
+                
         );
         setSubTotal(
             selected

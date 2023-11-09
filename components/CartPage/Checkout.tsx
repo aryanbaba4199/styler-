@@ -1,4 +1,5 @@
 const Checkout = ({ subtotal, shippingFee, total, selected, saveCartToDbHandler }: any) => {
+    
     return (
         <div className="flex flex-col h-fit bg-white rounded py-2 px-4 border">
 

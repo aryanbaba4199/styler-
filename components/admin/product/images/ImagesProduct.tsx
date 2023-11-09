@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import noImage from "../../../../public/assets/images/no-image.png";
 import { ArrowsPointingInIcon, SwatchIcon, TrashIcon } from "@heroicons/react/24/outline";
+import Jimp from "jimp";
 
 const ImagesProduct = ({
     images,
@@ -37,7 +38,8 @@ const ImagesProduct = ({
             if (
                 img.type !== "image/jpeg" &&
                 img.type !== "image/png" &&
-                img.type !== "image/webp"
+                img.type !== "image/webp"&&
+                img.type !== "image/jpg"
             ) {
                 dispatch(
                     showDialog({

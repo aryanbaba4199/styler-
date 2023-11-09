@@ -8,7 +8,7 @@ const UserInfo = ({ order }: any) => {
             </h3>
 
             <div className="flex items-center space-x-3">
-                <Image
+                <img
                     src={order.user.image}
                     alt={order.user.name}
                     width={65}
