@@ -42,10 +42,10 @@ const ProductCard = ({ product }: any) => {
                             : product.name}
                     </h3>
                 </Link>
-                <span className="text-xs text-red-500">
+                <span className="text-xs text-lime-600 font-semibold" >
                     {prices.length === 1
-                        ? `USD${prices[0]}$`
-                        : `USD${prices[0]} - ${prices[prices.length - 1]}$`}
+                        ? `Rs. ${prices[0]}/-`
+                        : `Rs. ${prices[0]} - ${prices[prices.length - 1]}/-`}
                 </span>
                 <div className="flex space-x-2 mt-1">
                     {styles &&

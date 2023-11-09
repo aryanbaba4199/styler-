@@ -1,4 +1,5 @@
 export const sizeList = [
+    "24","26","28", "30", "32", "34",
     "Mini",
     "Pro",
     "Max",

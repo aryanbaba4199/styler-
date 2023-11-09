@@ -5,10 +5,10 @@ const PaymentMethods = () => {
     return (
         <div className="mt-4  flex flex-col flex-grow h-fit bg-white rounded py-2 px-4 border">
             <h3 className="text-2xl my-2 font-semibold">Payment Methods</h3>
-            <Image
-                src={paymentMethods}
+            <img
+                src="https://d6xcmfyh68wv8.cloudfront.net/assets/upi-autopay/logo-desktop.png"
                 alt="payment methods"
-                width={220}
+                width={300}
                 height={25}
             />
             <div className="my-4 w-full bg-slate-200 h-[1px]" />
@@ -23,8 +23,7 @@ const PaymentMethods = () => {
                 <h5 className="text-xs font-semibold">Buyer Protection</h5>
             </div>
             <p className="text-sm">
-                {`Get full refund if the item is not ans described or if it's
-                    not delivered.`}
+                {`Thanks for your purchase : `}<text className="text-base font-semibold text-red-600">S</text>tyler
             </p>
         </div>
     );

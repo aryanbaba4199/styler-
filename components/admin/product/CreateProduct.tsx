@@ -41,7 +41,7 @@ const CreateProduct = ({
     const validate = Yup.object({
         name: Yup.string()
             .required("please add a name")
-            .min(10, "product name must between 10 and 300 characters")
+            .min(5, "product name must between 10 and 300 characters")
             .max(300, "product name must between 10 and 300 characters"),
         brand: Yup.string().required("please add a brand"),
         category: Yup.string().required("please select atleast one category"),
@@ -55,12 +55,13 @@ const CreateProduct = ({
         if (test == "valid") {
             createProductHnadler();
         } else {
-            dispatch(
-                showDialog({
-                    header: "Please follow our instructions.",
-                    msgs: test,
-                })
-            );
+            createProductHnadler();
+            // dispatch(
+            //     showDialog({
+            //         header: "Please follow our instructions.",
+            //         msgs: test,
+            //     })
+            // );
         }
     };
 

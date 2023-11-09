@@ -4,6 +4,8 @@ import CartPage from "@/components/CartPage/CartPage";
 import Empty from "@/components/CartPage/Empty";
 import { useAppSelector } from "@/redux/hooks";
 import { getSession } from "next-auth/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Cart = () => {

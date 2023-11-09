@@ -21,7 +21,9 @@ const AccountButtons = () => {
             {/* account Icon in Mobile */}
             <div className=" md:hidden">
                 <text className="flex items-center" >
+                    {session ?  <p onClick={() => signOut()}>{session?.user?.name}</p> :
                     <p className="text-sm" onClick={() => signIn()}>Sign in</p>
+                    }
                     <ChevronRightIcon className="h-3 " />
                     <UserIcon className="h-6" />
                 </text>

@@ -52,19 +52,19 @@ const CartPage = ({ cart }: any) => {
             selected
                 .reduce(
                     (total: any, product: any) =>
-                        total + product.price * product.qty,
+                        total + product.priceBefore * product.qty,
                     0
                 )
-                .toFixed(2)
+                
         );
         setTotal(
             (
                 selected.reduce(
                     (total: any, product: any) =>
-                        total + product.price * product.qty,
+                        total + product.priceBefore * product.qty,
                     0
                 ) + Number(shippingFee)
-            ).toFixed(2)
+            )
         );
     }, [selected]);
 
