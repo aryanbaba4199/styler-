@@ -32,6 +32,7 @@ const HeaderBottom = ({ handleOpenMenu }: any) => {
                     <li className="text-lime-400 "><Link href="">Todays Deal</Link></li>
                     <li className=""><Link href="">Jackets</Link></li>
                     <li className=""><Link href="">Shirts</Link></li>
+                    <Link href="/admin/dashboard">{admin}</Link>
                 </ul>
             </div>
             <div className="hidden md:inline text-sm">
