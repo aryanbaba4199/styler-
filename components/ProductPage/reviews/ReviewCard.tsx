@@ -7,7 +7,7 @@ const ReviewCard = ({ review }: any) => {
     return (
         <div className="grid md:grid-cols-10 mb-4">
             <div className="md:col-span-1 flex flex-col items-center mt-1">
-                <Image
+                <img
                     src={image}
                     width={55}
                     height={55}
@@ -19,7 +19,7 @@ const ReviewCard = ({ review }: any) => {
             </div>
             <div className="md:col-span-9 flex flex-col md:flex-row bg-white border rounded-xl px-5 py-3">
                 <div className="max-md:flex md:mr-6 mt-1 md:w-[75px] max-md:border-b max-md:pb-2 max-md:border-slate-100">
-                    <Image
+                    <img
                         src={review.style.image}
                         width={70}
                         height={70}
@@ -64,7 +64,7 @@ const ReviewCard = ({ review }: any) => {
                         <span className="m-4 flex justify-end space-x-5 w-52">
                             {review.images &&
                                 review.images.map((img: any, i: any) => (
-                                    <Image
+                                    <img
                                         key={i}
                                         src={img.url}
                                         width={50}

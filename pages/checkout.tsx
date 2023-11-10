@@ -15,7 +15,7 @@ import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
 const Checkout = ({ cart, user }: any) => {
     console.log("Checkout", cart);
-    
+
     const [addresses, setAddresses] = useState(user?.address || []);
     const [paymentMethod, setPaymentMethod] = useState("paypal");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
@@ -34,8 +34,8 @@ const Checkout = ({ cart, user }: any) => {
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
             <Header />
-            <main className="grid grid-cols-3 md:px-10 mb-10 py-4 gap-8 ">
-                <section className="col-span-2">
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:px-10 mb-10 py-4 gap-8">
+                <section className="md:col-span-2 lg:col-span-2">
                     <ShippingPage
                         user={user}
                         addresses={addresses}
@@ -45,7 +45,7 @@ const Checkout = ({ cart, user }: any) => {
                     <Product cart={cart} />
                 </section>
 
-                <section className="col-span-1">
+                <section className="md:col-span-1 lg:col-span-1">
                     <Payment
                         paymentMethod={paymentMethod}
                         setPaymentMethod={setPaymentMethod}
@@ -61,6 +61,7 @@ const Checkout = ({ cart, user }: any) => {
                     />
                 </section>
             </main>
+
             <MenuSideBar />
         </>
     );

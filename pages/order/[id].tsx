@@ -14,25 +14,28 @@ const OrderPage = ({ order: orderData }: any) => {
     console.log
     return (
         <>
-        {
-            loading && (
-                <DotLoaderSpinner loading={loading} />
-            )
-        }
+            {loading && <DotLoaderSpinner loading={loading} />}
             <Header title="Styler" />
-            <main className="max-w-screen-2xl mx-auto bg-gray-100 grid grid-cols-3 md:px-10 pt-5 pb-8 gap-8">
-                <section className="col-span-2 bg-white p-2 md:p-5 rounded-xl border">
+            <main className="max-w-screen-2xl mx-auto bg-gray-100 grid grid-cols-1 md:grid-cols-2 md:px-10 pt-5 pb-8 gap-8">
+                <section className="bg-white p-2 md:p-5 rounded-xl border">
                     <OrderInfo order={order} />
 
-                    {order.products.map((product: any,i: any) => (
+                    {order.products.map((product: any, i: any) => (
                         <Product key={i} product={product} />
                     ))}
 
                     <Total order={order} />
                 </section>
-                <section className="md:col-span-1 h-fit bg-white p-2 md:p-5 rounded-xl border">
+                <section className="h-fit bg-white p-2 md:p-5 rounded-xl border">
                     <UserInfo order={orderData} />
-                    {order.isPaid == false && (<Payment order={order} setOrder={setOrder} setLoading={setLoading} profile={false} />)}
+                    {order.isPaid == false && (
+                        <Payment
+                            order={order}
+                            setOrder={setOrder}
+                            setLoading={setLoading}
+                            profile={false}
+                        />
+                    )}
                 </section>
             </main>
         </>

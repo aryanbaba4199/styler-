@@ -1,13 +1,15 @@
 import Layout from "@/components/admin/layout/Layout";
 
 const Dashboard = () => {
-
-    return ( 
+    return (
         <Layout>
-            dashboard
-        </Layout>
+            <div className="fixed w-full top-0 left-0 bg-gray-800 content-center p-4 text-white">
+                <h1 className="text-2xl text-center font-bold">Welcome Admin!</h1>
+                <p className="mt-2 text-center">You have access to the admin dashboard.</p>
+            </div>
+            </Layout>
+        
     );
 }
- 
-export default Dashboard;
 
+export default Dashboard;

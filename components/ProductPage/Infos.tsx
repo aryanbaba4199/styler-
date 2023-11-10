@@ -246,7 +246,7 @@ const Infos = ({ product, setActiveImg }: any) => {
                 </button>
             </div>
 
-            <div className="mt-2 flex flex-col md:flex-row md:space-x-3">
+            <div className="mt-2 flex items-center flex-col md:flex-row md:space-x-3">
                 {loading ?(
                         <>
                             <ArrowPathIcon className="w-8 h-8" />
@@ -259,14 +259,14 @@ const Infos = ({ product, setActiveImg }: any) => {
                 <button
                     disabled={product.quantity < 1}
                     onClick={() => buyNow()}
-                    className="w-32 flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded space-x-2 hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2 hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3"
+                    className="w-40 flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded space-x-2 hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2 hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3"
                 >   
                     <span>Buy Now</span>
                 </button>
                 )}
                 
                 <button
-                    className={`flex items-center bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2  hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3 ${
+                    className={`w-40 flex items-center justify-center  bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2  hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3 ${
                         product.quantity < 1 ? "cursor-not-allowed" : ""
                     }`}
                     disabled={product.quantity < 1}

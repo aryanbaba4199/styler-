@@ -82,7 +82,7 @@ const CartPage = ({ cart }: any) => {
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
-            <div className="flex flex-col md:flex-row px-2 py-8 md:px-8 gap-4">
+            <div className="flex flex-col px-2 py-8 md:flex-row md:px-8 gap-4">
                 <div className="md:w-3/4">
                     <CartHeader
                         cartItems={cart.cartItems}

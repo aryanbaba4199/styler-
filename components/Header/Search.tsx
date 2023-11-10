@@ -42,7 +42,7 @@ const Search = ({searchHandler}: any) => {
                     // onClick={() => setShowSearch((prev) => !prev)}
                     type="text"
                     className="outline-none w-full h-11 text-black pl-3 max-md:rounded-l"
-                    placeholder="Search Amazon"
+                    placeholder="Search Stylers"
                     onChange={(e: any) => setQuery(e.target.value)}
                     defaultValue={query}
                 />
