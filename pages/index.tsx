@@ -17,9 +17,9 @@ export default function Home({ products }: any) {
                 <CategoriesProduct products={products} />
                 <div className="z-10 relative">
                     <HomeProductSwiper products={products} category="Jeans" />
-                    <HomeProductSwiper products={products} category="shoes" />
-                    <HomeProductSwiper products={products} category="Beauty" />
-                    <HomeProductSwiper products={products} category="Kids" />
+                    <HomeProductSwiper products={products} category="Jacket" />
+                    <HomeProductSwiper products={products} category="T-Shirts" />
+                    <HomeProductSwiper products={products} category="Shirt" />
                 </div>
             </main>
             <Footer/>

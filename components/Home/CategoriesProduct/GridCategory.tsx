@@ -11,7 +11,7 @@ const GridCategory = ({ category, products, gridCols}: any) => {
                 
                 {selectedProducts.map((product: any) => (
                         <Link href="/browse" key={product._id}>
-                            <div className={`relative  ${length > 1 ? 'h-[200px]' : 'h-[420px]'}`}>
+                            <div className={`relative  ${length > 1 ? 'h-[200px]' : 'h-[320px]'}`}>
                                 <Image
                                     src={product.subProducts[0].images[0].url}
                                     alt={product.name}
