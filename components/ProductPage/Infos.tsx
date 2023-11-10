@@ -38,6 +38,41 @@ const Infos = ({ product, setActiveImg }: any) => {
         }
     }, [router.query.size]);
 
+    // --------------Buy Now Handler --------------------------------
+    const buyNow = async () => {
+        setLoading(true);
+        if (!router.query.size) {
+            setError("Please Select a size");
+            setLoading(false);
+            return;
+        }
+
+        const { data } = await axios.get(
+            `/api/product/${product._id}?style=${product.style}&size=${router.query.size}`
+        );
+
+        if (qty > data.quantity) {
+            setError(
+                "The Quantity you have chosen is more than in stock. Try lowering the Quantity."
+            );
+            setLoading(false);
+        } else if (data.quantity < 1) {
+            setError("This Product is out of stock!");
+            setLoading(false);
+            return;
+        } else {
+            let _uid = `${product._id}_${product.style}_${router.query.size}`;
+            router.push({
+                pathname: '/checkout',
+                query: {
+                    product: JSON.stringify({ ...data, qty, size: data.size, _uid }),
+                },
+            });
+        }
+    };
+
+
+    //----------Cart Handler ---------------
     const addToCartHandler = async () => {
         setLoading(true);
         if (!router.query.size) {
@@ -79,40 +114,7 @@ const Infos = ({ product, setActiveImg }: any) => {
         }
     };
 
-    const handleWishlist = async () => {
-        try {
-            if (!session) {
-                return signIn();
-            }
-            const { data } = await axios.put("/api/user/wishlist", {
-                product_id: product._id,
-                style: product.style,
-            });
-            dispatch(
-                showDialog({
-                    header: "Product added to whishlist successfully.",
-                    msgs: [
-                        {
-                            msg: data.message,
-                            type: "success",
-                        },
-                    ],
-                })
-            );
-        } catch (error: any) {
-            dispatch(
-                showDialog({
-                    header: "whislist Error",
-                    msgs: [
-                        {
-                            msg: error.response.data.message,
-                            type: "error",
-                        },
-                    ],
-                })
-            );
-        }
-    };
+    
 
     return (
         <div className="flex flex-col row-span-3 md:col-span-3 max-md:px-2 mb-4">
@@ -245,8 +247,26 @@ const Infos = ({ product, setActiveImg }: any) => {
             </div>
 
             <div className="mt-2 flex flex-col md:flex-row md:space-x-3">
+                {loading ?(
+                        <>
+                            <ArrowPathIcon className="w-8 h-8" />
+                            <span className="font-semibold text-xl">
+                                Loading...
+                            </span>
+                        </>
+                    ) :(
+
                 <button
-                    className={`flex flex-grow items-center justify-center bg-gradient-to-r from-amazon-orange to-yellow-300 text-amazon-blue_dark  p-2 rounded-full space-x-2 hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md transition duration-300 ${
+                    disabled={product.quantity < 1}
+                    onClick={() => buyNow()}
+                    className="w-32 flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded space-x-2 hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2 hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3"
+                >   
+                    <span>Buy Now</span>
+                </button>
+                )}
+                
+                <button
+                    className={`flex items-center bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold text-white p-2 rounded  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-500 hover:shadow-md rounded-full p-2  hover:text-lime-200 transition duration-500 ease-in-out max-md:mt-3 ${
                         product.quantity < 1 ? "cursor-not-allowed" : ""
                     }`}
                     disabled={product.quantity < 1}
@@ -261,21 +281,17 @@ const Infos = ({ product, setActiveImg }: any) => {
                         </>
                     ) : (
                         <>
-                            <ShoppingBagIcon className="w-8 h-8" />
-                            <span className="font-semibold text-xl">
-                                ADD TO CART
+                            
+                            <span className="">
+                                Add To Cart
                             </span>
+                            
+
                         </>
                     )}
                 </button>
 
-                <button
-                    onClick={() => handleWishlist()}
-                    className="flex items-center bg-slate-200 text-amazon-blue_light p-2 rounded space-x-2 hover:bg-amazon-blue_light hover:text-slate-100 transition duration-500 ease-in-out max-md:mt-3"
-                >
-                    <HeartIcon className="w-8 h-8" />
-                    <span>WishList</span>
-                </button>
+                
             </div>
             <div className="m-2">
                 {error && (
