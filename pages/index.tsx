@@ -22,7 +22,7 @@ export default function Home({ products }: any) {
                     <HomeProductSwiper products={products} category="Kids" />
                 </div>
             </main>
-            <Footer />
+            <Footer/>
             <MenuSideBar />
         </>
     );

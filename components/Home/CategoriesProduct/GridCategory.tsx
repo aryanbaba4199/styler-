@@ -10,7 +10,7 @@ const GridCategory = ({ category, products, gridCols}: any) => {
                 <div className={`h-full grid grid-cols-${gridCols} gap-4 m-1  items-center`}>
                 
                 {selectedProducts.map((product: any) => (
-                        <Link href={`/product/${product.name}`} key={product._id}>
+                        <Link href="/browse" key={product._id}>
                             <div className={`relative  ${length > 1 ? 'h-[200px]' : 'h-[420px]'}`}>
                                 <Image
                                     src={product.subProducts[0].images[0].url}

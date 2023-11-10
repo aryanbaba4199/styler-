@@ -3,10 +3,17 @@ import { closeMenu, selectMenu } from "@/redux/slices/MenuSlice";
 import { RootState } from "@/redux/store";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import {useSession} from "next-auth/react";
+import Link from "next/dist/client/link";
 
 const MenuSideBar = () => {
+    const {data : session} = useSession();
     const dispatch = useAppDispatch();
     const menu = useAppSelector(selectMenu);
+    let userName :any = "Guest";
+    if  (session){
+        userName = session?.user?.name;
+    }
 
     return (
         <>
@@ -24,62 +31,66 @@ const MenuSideBar = () => {
                     </div>
 
                     <div className="flex items-center bg-amazon-blue_light text-white px-8 py-3 ">
+                        {session ? 
+                        <img
+                            src= {session.user?.image}
+                            className="w-16 h-16 rounded-full"
+                        />
+                         : 
                         <UserCircleIcon className="h-9" />
-                        <b className="text-xl font-bold ml-3">Hello, sign in</b>
+                        }
+                        <b className="text-xl font-bold ml-3">Hello {userName}</b>
                     </div>
 
                     <div className="menu-sidebar flex flex-col py-2 overflow-y-scroll h-[85%]">
 
                         <h3>
-                            Digital Content & Devices
+                            Profile
                         </h3>
                         <ul className="border-b pb-2">
                             <li className="group">
-                                Amazon Music
+                                Cart
                                 <ChevronRightIcon className="group-hover:text-gray-800"  />
                             </li>
                             <li className="group">
-                                Amazon Appstore
+                                Orders
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                         </ul>
 
                         <h3>
-                            Shop By Department
+                            Shop By Category
                         </h3>
                         <ul className="border-b pb-2">
                             <li className="group">
-                                Electronics
+                                Mens Clothing
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                             <li className="group flex">
-                                Computers
+                                Womens Clothing
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                             <li className="group">
-                                Smart Home
+                                Kids Clothing
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
-                            <li className="group">
-                                Arts & Crafts
-                                <ChevronRightIcon className="group-hover:text-gray-800" />
-                            </li>
+                            
                         </ul>
 
                         <h3>
-                            Programs & Features
+                            Other venchers
                         </h3>
                         <ul className="border-b pb-2">
                             <li className="group">
-                                Gift Cards
+                                <Link href = "https://dreamplanner.in">Dream Planner</Link>
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                             <li className="group">
-                                Shop By Interest
+                                <Link href="https://www.akchhatfilmsproduction.com/">Akchhat Films Production</Link>
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                             <li className="group">
-                                Amazon Live
+                                <Link href="/">Amar Dance Academy</Link>
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                         </ul>

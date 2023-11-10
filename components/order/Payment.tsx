@@ -3,9 +3,19 @@ import { emptyCart } from "@/redux/slices/CartSlice";
 import axios from "axios";
 import Image from "next/image";
 import { paymentMethods } from "../checkoutPage/payment/paymentMethods";
-
+import Head from "next/head";
 const Payment = ({ order, setLoading, setOrder }: any) => {
     const dispatch = useAppDispatch();
+
+    //--------Checking Integretion-----------
+
+
+
+
+
+    const initiatePayment = () => {
+        
+    }
 
     const paymentHandler = async () => {
         try {
@@ -27,6 +37,9 @@ const Payment = ({ order, setLoading, setOrder }: any) => {
 
     return (
         <>
+        <Head>
+            <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+        </Head>
             <h3 className=" pb-2 mb-4 border-b border-b-2  text-xl font-semibold">
                 Payment
             </h3>

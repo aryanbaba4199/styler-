@@ -4,6 +4,7 @@ import {
     ChevronDownIcon,
     ShoppingCartIcon,
     UserIcon,
+    GiftIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
@@ -20,13 +21,13 @@ const AccountButtons = () => {
         <div className="flex items-center max-md:ml-auto md:space-x-6 space-x-2">
             {/* account Icon in Mobile */}
             <div className=" md:hidden">
-                <text className="flex items-center" >
+                <h4 className="flex items-center" >
                     {session ?  <p onClick={() => signOut()}>{session?.user?.name}</p> :
                     <p className="text-sm" onClick={() => signIn()}>Sign in</p>
                     }
                     <ChevronRightIcon className="h-3 " />
                     <UserIcon className="h-6" />
-                </text>
+                </h4>
             </div>
 
             <div className="hidden md:inline link relative show-account p-1">
@@ -111,8 +112,8 @@ const AccountButtons = () => {
             </div>
 
             <div className="link hidden md:inline">
-                <p className="tex t-xs text-slate-300">Returns</p>
-                <p className="font-bold text-sm">& Orders</p>
+                <GiftIcon className="h-6"/>
+                <p className="font-bold text-sm">Orders</p>
             </div>
 
             <div
