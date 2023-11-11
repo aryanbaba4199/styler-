@@ -32,6 +32,12 @@ const Browse = ({
     paginationCount,
 }: any) => {
     const router = useRouter();
+
+    
+
+
+
+
     // const [loading, setloading] = useState(false);
 
     const filter = ({

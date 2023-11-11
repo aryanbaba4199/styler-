@@ -25,7 +25,7 @@ const ProductCard = ({ product }: any) => {
     }, [active]);
 
     return (
-        <div className="flex flex-col relative w-[215px] rounded p-1">
+        <div className=" flex flex-col relative w-[215px] rounded p-1">
             <Link href={`/product/${product.slug}?style=${active}${`${product.subProducts[active].sizes.length > 1 ? '&size='+ active : ''}`}`}>
                 <ProductSwiper images={images} />
             </Link>

@@ -27,11 +27,11 @@ const HeaderBottom = ({ handleOpenMenu }: any) => {
             </div>
             <div className="flex flex-grow max-md:overflow-x-scroll scrollbar-hide text-sm whitespace-nowrap ">
                 <ul className="flex space-x-4">
-                    <li className=""><Link href="">Products</Link></li>
-                    <li className=""><Link href="">Top Jeans</Link></li>
-                    <li className="text-lime-400 "><Link href="">Todays Deal</Link></li>
-                    <li className=""><Link href="">Jackets</Link></li>
-                    <li className=""><Link href="">Shirts</Link></li>
+                    <li className=""><Link href="/browse">Products</Link></li>
+                    <li className=""><Link href="/browse?category=65488df2a4791b6f27b8d01a">Top Jeans</Link></li>
+                    <li className="text-lime-400 "><Link href="/browse">Todays Deal</Link></li>
+                    <li className=""><Link href="/browse?category=654e09a3b94e29c59216a657">Jackets</Link></li>
+                    <li className=""><Link href="/browse?category=654e09a9b94e29c59216a65b">Shirts</Link></li>
                     <Link href="/admin/dashboard">{admin}</Link>
                 </ul>
             </div>
