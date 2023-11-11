@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react";
+import { Head } from "next/document";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function App({
@@ -12,14 +13,19 @@ export default function App({
     pageProps: { session, ...pageProps },
 }: AppProps) {
     return (
+        <>
+        
         <SessionProvider session={session}>
             <Provider store={store}>
+            
                 <PersistGate loading={null} persistor={persistor}>
+
                     <div className={inter.className}>
                         <Component {...pageProps} />
                     </div>
                 </PersistGate>
             </Provider>
         </SessionProvider>
+        </>
     );
 }
