@@ -1,39 +1,100 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { emptyCart } from "@/redux/slices/CartSlice";
 import axios from "axios";
+import razorpay from "razorpay";
 import Image from "next/image";
 import { paymentMethods } from "../checkoutPage/payment/paymentMethods";
+
+import { useState, useEffect } from "react";
 import Head from "next/head";
+
+  
+
+
+
+
 const Payment = ({ order, setLoading, setOrder }: any) => {
     const dispatch = useAppDispatch();
+    console.log("Order dara : " + order)
+
 
     //--------Checking Integretion-----------
+   // ... (existing imports)
 
 
+  const initiatePayment = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post('/api/order/razorpay', {
+        amount: order.total * 100, // Convert the amount to the smallest currency unit (e.g., paise)
+      });
 
+      const { orderId, razorpayOptions } = response.data;
 
+      const razor : any = new razorpay(razorpayOptions);
+      razor.on('payment.failed', function (response : any) {
+        // Handle failed payment
+        console.error('Payment failed:', response.error.description);
+        setLoading(false);
+      });
+      razor.on('payment.success', function (response : any) {
+        // Handle successful payment
+        console.log('Payment successful:', response);
+        paymentHandler(response.razorpay_payment_id);
+      });
 
-    const initiatePayment = () => {
-        
+      razor.open();
+    } catch (error) {
+      setLoading(false);
+      console.log('Error initiating payment:', error);
     }
+  };
 
-    const paymentHandler = async () => {
-        try {
-            setLoading(true);
-            setTimeout(async () => {
-                const { data } = await axios.put("/api/order/payment", {
-                    id: order._id,
-                });
-                setOrder(data);
-                dispatch(emptyCart(data));
-                setLoading(false);
-            }, 500);
+  useEffect(() => {
+    initiatePayment();
+  }, []);
 
-        } catch (error: any) {
-            setLoading(false);
-            console.log("errr > ", error);
-        }
-    };
+
+  const paymentHandler = async (razorpayPaymentId: string) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.put("/api/order/payment", {
+        id: order._id,
+        razorpayPaymentId,
+      });
+      setOrder(data);
+      dispatch(emptyCart(data));
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log("Error handling payment:", error);
+    }
+  };
+
+  
+
+    
+
+
+    
+
+    // const paymentHandler = async () => {
+    //     try {
+    //         setLoading(true);
+    //         setTimeout(async () => {
+    //             const { data } = await axios.put("/api/order/payment", {
+    //                 id: order._id,
+    //             });
+    //             setOrder(data);
+    //             dispatch(emptyCart(data));
+    //             setLoading(false);
+    //         }, 500);
+
+    //     } catch (error: any) {
+    //         setLoading(false);
+    //         console.log("errr > ", error);
+    //     }
+    // };
 
     return (
         <>

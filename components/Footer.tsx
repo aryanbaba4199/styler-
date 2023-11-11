@@ -23,9 +23,11 @@ const Footer = () => {
                     <ul>
                         
                         <li><Link href="/">About Styler</Link></li>
-                        <li><Link href="/">Investor Relations</Link></li>
-                        <li><Link href="/">Styler Assured</Link></li>
-                        <li><Link href="/">Styler Strategy</Link></li>
+                        <li><Link href="https://merchant.razorpay.com/policy/MyokIOTbkOG0zi/contact_us">Contact us</Link></li>
+                        <li><Link href="https://merchant.razorpay.com/policy/MyokIOTbkOG0zi/shipping">Shipping & Delivery Policy</Link></li>
+                        <li><Link href="https://merchant.razorpay.com/policy/MyokIOTbkOG0zi/privacy">Privacy and Policy</Link></li>
+                        <li><Link href="https://merchant.razorpay.com/policy/MyokIOTbkOG0zi/terms">Terms & Conditions</Link></li>
+                        <li><Link href="https://merchant.razorpay.com/policy/MyokIOTbkOG0zi/refund">Cencellation & Refund Policy</Link></li>
                     </ul>
                 </div>
 
