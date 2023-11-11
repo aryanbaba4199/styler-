@@ -22,37 +22,37 @@ const Payment = ({ order, setLoading, setOrder }: any) => {
    // ... (existing imports)
 
 
-  const initiatePayment = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post('/api/order/razorpay', {
-        amount: order.total * 100, // Convert the amount to the smallest currency unit (e.g., paise)
-      });
+  // const initiatePayment = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.post('/api/order/razorpay', {
+  //       amount: order.total * 100, // Convert the amount to the smallest currency unit (e.g., paise)
+  //     });
 
-      const { orderId, razorpayOptions } = response.data;
+  //     const { orderId, razorpayOptions } = response.data;
 
-      const razor : any = new razorpay(razorpayOptions);
-      razor.on('payment.failed', function (response : any) {
-        // Handle failed payment
-        console.error('Payment failed:', response.error.description);
-        setLoading(false);
-      });
-      razor.on('payment.success', function (response : any) {
-        // Handle successful payment
-        console.log('Payment successful:', response);
-        paymentHandler(response.razorpay_payment_id);
-      });
+  //     const razor : any = new razorpay(razorpayOptions);
+  //     razor.on('payment.failed', function (response : any) {
+  //       // Handle failed payment
+  //       console.error('Payment failed:', response.error.description);
+  //       setLoading(false);
+  //     });
+  //     razor.on('payment.success', function (response : any) {
+  //       // Handle successful payment
+  //       console.log('Payment successful:', response);
+  //       paymentHandler(response.razorpay_payment_id);
+  //     });
 
-      razor.open();
-    } catch (error) {
-      setLoading(false);
-      console.log('Error initiating payment:', error);
-    }
-  };
+  //     razor.open();
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log('Error initiating payment:', error);
+  //   }
+  // };
 
-  useEffect(() => {
-    initiatePayment();
-  }, []);
+  // useEffect(() => {
+  //   initiatePayment();
+  // }, []);
 
 
   const paymentHandler = async (razorpayPaymentId: string) => {
