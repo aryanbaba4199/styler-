@@ -218,7 +218,18 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                         href="/auth/register"
                         className="flex items-center justify-center w-full mt-4 button-orange  py-[0.5rem] text-sm text-gray-900 active:from-amazon-orange active:to-yellow-200 "
                     >
-                        Create your Amazon account
+                        Create your 
+                        <Image
+                            src={amazonLogoDark}
+                            width={90}
+                            height={16}
+                            className="mx-2 mt-1"
+                            alt="Stylers"
+
+                        >
+
+                        </Image>
+                         account
                     </Link>
                 </div>
             </div>
