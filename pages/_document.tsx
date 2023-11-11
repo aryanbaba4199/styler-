@@ -6,7 +6,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* Other head elements */}
+        <meta name="google-site-verification" content="google5d6bde75488aa843" />
+
           <link rel="icon" href="/favicon.png" />
         </Head>
         <body>
