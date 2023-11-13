@@ -18,10 +18,9 @@ import dataURItoBlob from "../../../utils/dataURItoBlob";
 import { uploadImages } from "../../../request/upload";
 import axios from "axios";
 import { useState } from "react";
-import Jimp from 'jimp';
+
 import  Resizer  from 'react-image-file-resizer';
 
-console.log(Jimp);
 
 
 type Color = string;
