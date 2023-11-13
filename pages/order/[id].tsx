@@ -34,6 +34,7 @@ const OrderPage = ({ order: orderData }: any) => {
                             setOrder={setOrder}
                             setLoading={setLoading}
                             profile={false}
+                            
                         />
                     )}
                 </section>

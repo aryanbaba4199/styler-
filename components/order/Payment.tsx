@@ -1,82 +1,152 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { emptyCart } from "@/redux/slices/CartSlice";
 import axios from "axios";
-import razorpay from "razorpay";
 import Image from "next/image";
 import { paymentMethods } from "../checkoutPage/payment/paymentMethods";
+import Razorpay from 'razorpay';
 
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import Script from "next/script";
 
-  
+function loadScript(src: any) {
+    return new Promise((resolve) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => {
+            resolve(true)
+        }
+        script.onerror = () => {
+            resolve(false)
+        }
+        document.body.appendChild(script)
+    })
+}
+
+<Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
 
 
-
-const Payment = ({ order, setLoading, setOrder }: any) => {
+const Payment = ({ order, setLoading, setOrder, }: any) => {
     const dispatch = useAppDispatch();
-    console.log("Order dara : " + order)
+    console.log("Order data : ",);
+    async function displayRazorpay() {
 
+        const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+        if (!res) {
+            alert('Razropay failed to load!!')
+            return
+        }
+        const response = await axios.post(`/api/order/razorpay`, {
+            amount: order.total * 100,
+            user: order.user
+        });
+
+        const { orderId, razorpayOptions } = response.data;
+
+
+
+        var options = {
+            "key": process.env.RAZOR_MID, // Replace with your Razorpay Key ID
+            "amount": order.total.amount * 100,
+            "currency": "INR",
+            "name": "Stylers",
+            "description": 'Payment for Order',
+            "order_id": orderId,
+            "callback_url": "http://localhost:3000/verify"
+            // "handler": function (response: any) {
+            //     alert(response.razorpay_payment_id);
+            //     alert(response.razorpay_order_id);
+            //     alert(response.razorpay_signature);
+            //     alert("Payment Successful")
+            //     paymentHandler(
+            //         response.razorpay_payment_id,
+            //         response.razorpay_order_id,
+            //         response.razorpay_signature,
+
+            //     )
+            // },
+            // "prefill": {
+            //     "name": order.user.name,
+            //     "email": order.user.email,
+            // },
+            // "notes": {
+            //     "address": order.user.address
+            // },
+            // "theme": {
+            //     "color": "#80808"
+            // },
+            
+
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+        
+    }
+    
 
     //--------Checking Integretion-----------
-   // ... (existing imports)
 
 
-  // const initiatePayment = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await axios.post('/api/order/razorpay', {
-  //       amount: order.total * 100, // Convert the amount to the smallest currency unit (e.g., paise)
-  //     });
 
-  //     const { orderId, razorpayOptions } = response.data;
+    //   const initiatePayment = async () => {
+    //     try {
+    //       setLoading(true);
+    //       const response = await axios.post(`/api/order/razorpay`, {
+    //         amount : order.total * 100, 
+    //         user : order.user
+    //       });
 
-  //     const razor : any = new razorpay(razorpayOptions);
-  //     razor.on('payment.failed', function (response : any) {
-  //       // Handle failed payment
-  //       console.error('Payment failed:', response.error.description);
-  //       setLoading(false);
-  //     });
-  //     razor.on('payment.success', function (response : any) {
-  //       // Handle successful payment
-  //       console.log('Payment successful:', response);
-  //       paymentHandler(response.razorpay_payment_id);
-  //     });
+    //       const { orderId, razorpayOptions } = response.data;
 
-  //     razor.open();
-  //   } catch (error) {
-  //     setLoading(false);
-  //     console.log('Error initiating payment:', error);
-  //   }
-  // };
+    //       var razor : any = new Razorpay(razorpayOptions);
+    //       razor.on('payment.failed', function (response : any) {
 
-  // useEffect(() => {
-  //   initiatePayment();
-  // }, []);
+    //         console.error('Payment failed:', response.error.description);
+    //         setLoading(false);
+    //       });
+    //       razor.on('payment.success', function (response : any) {
 
+    //         console.log('Payment successful:', response);
+    //         paymentHandler(response.razorpay_payment_id);
+    //       });
 
-  const paymentHandler = async (razorpayPaymentId: string) => {
-    try {
-      setLoading(true);
-      const { data } = await axios.put("/api/order/payment", {
-        id: order._id,
-        razorpayPaymentId,
-      });
-      setOrder(data);
-      dispatch(emptyCart(data));
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log("Error handling payment:", error);
-    }
-  };
+    //       razor.open();
+    //     } catch (error) {
+    //       setLoading(false);
+    //       console.log('Error initiating payment:', error);
+    //     }
+    //   };
 
-  
-
-    
+    //   useEffect(() => {
+    //     initiatePayment();
+    //   }, []);
 
 
-    
+    const paymentHandler = async (rzrPaymnetId : any,rzrOrderId : any,rzrSignature : any ) => {
+        try {
+            setLoading(true);
+            const { data } = await axios.put("/api/order/payment", {
+                id: order._id,
+                rzrPaymnetId,
+            });
+            setOrder(data);
+            dispatch(emptyCart(data));
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log("Error handling payment:", error);
+        }
+    };
+
+
+
+
+
+
+
 
     // const paymentHandler = async () => {
     //     try {
@@ -98,9 +168,9 @@ const Payment = ({ order, setLoading, setOrder }: any) => {
 
     return (
         <>
-        <Head>
-            <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
-        </Head>
+            <Head>
+                <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+            </Head>
             <h3 className=" pb-2 mb-4 border-b border-b-2  text-xl font-semibold">
                 Payment
             </h3>
@@ -110,10 +180,9 @@ const Payment = ({ order, setLoading, setOrder }: any) => {
                         return (
                             <div
                                 key={payment.id}
-                                className={`cursor-pointer p-2 my-2 flex items-center rounded-xl ${
-                                    order.paymentMethod == payment.id &&
+                                className={`cursor-pointer p-2 my-2 flex items-center rounded-xl ${order.paymentMethod == payment.id &&
                                     "bg-slate-200"
-                                } hover:bg-slate-200 transition`}
+                                    } hover:bg-slate-200 transition`}
                             >
                                 <label htmlFor={payment.id} className="">
                                     <input
@@ -149,7 +218,7 @@ const Payment = ({ order, setLoading, setOrder }: any) => {
                 })}
                 <button
                     className=" mt-2 w-full rounded-xl bg-amazon-blue_light text-white p-4 font-semibold text-2xl hover:bg-amazon-blue_dark hover:scale-95 transition"
-                    onClick={() => paymentHandler()}
+                    onClick={displayRazorpay}
                 >
                     Pay
                 </button>
