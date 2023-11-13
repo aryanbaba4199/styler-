@@ -1,12 +1,12 @@
-import nc from "next-connect";
+import {createRouter} from "next-connect";
 import db from "../../../utils/db";
 import Category from "../../../models/Category";
 import slugify from "slugify";
 
 // import use(auth) middleware...
-const handler = nc();
+const router = createRouter();
 
-handler.post( async( req, res) => {
+router.post( async( req, res) => {
     try {
         const { name } = req.body;
         db.connectDb();
@@ -31,4 +31,4 @@ handler.post( async( req, res) => {
 })
 
 
-export default handler;
+export default router.handler();

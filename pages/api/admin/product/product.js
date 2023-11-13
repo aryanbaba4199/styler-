@@ -1,9 +1,9 @@
-import nc from "next-connect";
+import {createRouter} from "next-connect";
 import db from "../../../../utils/db";
 import Product from "../../../../models/Product";
 import slugify from "slugify";
 
-const handler = nc();
+const router = createRouter();
 
 handler.post( async (req, res) => {
     try {
@@ -70,4 +70,4 @@ handler.post( async (req, res) => {
 //     }
 // })
 
-export default handler;
+export default router.handler();

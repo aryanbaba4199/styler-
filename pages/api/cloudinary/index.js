@@ -1,4 +1,4 @@
-import nc from "next-connect";
+import {createRouter} from "next-connect";
 import cloudinary from "cloudinary";
 import bodyParser from "body-parser";
 import fileUpload from "express-fileupload";
@@ -11,7 +11,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const handler = nc()
+const router = createRouter()
     .use(
         fileUpload({
             useTempFiles: true
@@ -44,9 +44,9 @@ handler.post(async (req, res) => {
     }
 });
 
-export default handler;
+export default router.handler();
 
-handler.delete(async (req, res) => {
+router.delete(async (req, res) => {
     let image_id = req.body.public_id;
     cloudinary.v2.uploader.destory(image_id, (err, res) => {
         if (err) return res.status(400).json({ success: false, err });

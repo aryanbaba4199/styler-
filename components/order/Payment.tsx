@@ -54,7 +54,7 @@ const Payment = ({ order, setLoading, setOrder, }: any) => {
             "name": "Stylers",
             "description": 'Payment for Order',
             "order_id": orderId,
-            "callback_url": "http://localhost:3000/verify"
+            "callback_url": "https://stylers.in/verify"
             // "handler": function (response: any) {
             //     alert(response.razorpay_payment_id);
             //     alert(response.razorpay_order_id);

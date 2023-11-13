@@ -1,7 +1,7 @@
 // /api/order/razorpay.js
 import { v4 as uuidv4 } from 'uuid';
 import Razorpay from 'razorpay';
-import Script from 'next/script';
+
 
 export default async function handler(req, res) {
   let user = req.body.user
@@ -28,9 +28,6 @@ export default async function handler(req, res) {
   try {
     const response = await razorpay.orders.create(options);
     const orderId = response.id;
-
-
-
     const razorpayOptions = {
       key_id: process.env.RAZOR_MID, // Replace with your Razorpay Key ID
       amount: options.amount,
@@ -39,8 +36,6 @@ export default async function handler(req, res) {
       description: 'Payment for Order',
       order_id: orderId,
       handler: function (response) {
-        
-        
         res.status(200).json({ orderId, razorpayOptions });
       },
       prefill: {

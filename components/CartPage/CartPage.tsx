@@ -27,7 +27,6 @@ const CartPage = ({ cart }: any) => {
                 const { data } = await axios.post(`/api/user/updatecart`, {
                     products: cart.cartItems,
                 });
-                console.log("data =", data);
                 dispatch(updateCart(data));
                 // console.log("update cart > ", data);
             };
@@ -47,25 +46,25 @@ const CartPage = ({ cart }: any) => {
                         total + Number(product.shipping),
                     0
                 )
-                
+                .toFixed(2)
         );
         setSubTotal(
             selected
                 .reduce(
                     (total: any, product: any) =>
-                        total + product.priceBefore * product.qty,
+                        total + product.price * product.qty,
                     0
                 )
-                
+                .toFixed(2)
         );
         setTotal(
             (
                 selected.reduce(
                     (total: any, product: any) =>
-                        total + product.priceBefore * product.qty,
+                        total + product.price * product.qty,
                     0
                 ) + Number(shippingFee)
-            )
+            ).toFixed(2)
         );
     }, [selected]);
 
@@ -82,7 +81,7 @@ const CartPage = ({ cart }: any) => {
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
-            <div className="flex flex-col px-2 py-8 md:flex-row md:px-8 gap-4">
+            <div className="flex flex-col md:flex-row px-2 py-8 md:px-8 gap-4">
                 <div className="md:w-3/4">
                     <CartHeader
                         cartItems={cart.cartItems}

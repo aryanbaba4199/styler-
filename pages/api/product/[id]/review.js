@@ -1,11 +1,11 @@
-import nc from "next-connect";
+import {createRouter} from "next-connect";
 import db from "../../../../utils/db";
 import Product from "../../../../models/Product";
 import auth from "../../../../middleware/auth";
 
-const handler = nc().use(auth);
+const router = createRouter().use(auth);
 
-handler.put(async (req, res) => {
+router.put(async (req, res) => {
     try {
         await db.connectDb();
         const product = await Product.findById(req.query.id);
@@ -74,4 +74,4 @@ handler.put(async (req, res) => {
 });
 
 
-export default handler;
+export default router.handler();
