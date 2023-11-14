@@ -30,7 +30,7 @@ router.post( async( req, res) => {
     }
 })
 
-handler.get( async(req, res) => {
+router.get( async(req, res) => {
     try {
         const { category } = req.query;
         

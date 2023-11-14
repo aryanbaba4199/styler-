@@ -25,7 +25,7 @@ export const config = {
     },
 };
 
-handler.post(async (req, res) => {
+router.post(async (req, res) => {
     try {
         const { path } = req.body;
         let files = Object.values(req.files).flat();

@@ -5,7 +5,7 @@ import slugify from "slugify";
 
 const router = createRouter();
 
-handler.post( async (req, res) => {
+router.post( async (req, res) => {
     try {
         db.connectDb();
         if(req.body.parent) {

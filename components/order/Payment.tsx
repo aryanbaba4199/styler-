@@ -3,11 +3,11 @@ import { emptyCart } from "@/redux/slices/CartSlice";
 import axios from "axios";
 import Image from "next/image";
 import { paymentMethods } from "../checkoutPage/payment/paymentMethods";
-import Razorpay from 'razorpay';
 
-import { useState, useEffect } from "react";
+
+
 import Head from "next/head";
-import Script from "next/script";
+
 
 function loadScript(src: any) {
     return new Promise((resolve) => {
