@@ -11,9 +11,12 @@ const HeaderBottom = ({ handleOpenMenu }: any) => {
     let admin = "";
     if (session){
         useremail = session?.user?.email;
-        if(admins.includes(admin)){
+        if(admins.includes(useremail)){
             admin = "Admin Panel"
-        }  
+        } 
+        else{
+            console.log("Welcome Guest");
+        } 
     }
     
 
