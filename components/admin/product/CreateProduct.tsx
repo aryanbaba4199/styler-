@@ -72,7 +72,7 @@ const CreateProduct = ({
     let uploaded_images: any = [];
     let style_img = "";
     const createProductHnadler = async () => {
-        setLoading(true);
+        // setLoading(true);
         if (images) {
             console.log(images);
             // Here have to perform image resize

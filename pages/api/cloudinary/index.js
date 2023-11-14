@@ -22,6 +22,7 @@ const router = createRouter()
 export const config = {
     api: {
         bodyParser: false,
+        methods: ['POST', 'DELETE', "GET", "UPDATE"],
     },
 };
 
