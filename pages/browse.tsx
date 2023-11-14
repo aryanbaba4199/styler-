@@ -230,7 +230,7 @@ const Browse = ({
     return (
         <>
             {/* {loading && <DotLoaderSpinner loading={loading} />} */}
-            <Header title={"Browse Products"} searchHandler={searchHandler} />
+            <Header title={"Products"} searchHandler={searchHandler} />
             <div className="max-w-screen-2xl mx-auto bg-slate-100 p-1 md:p-6 gap-2">
                 <div ref={headerRef}>
                     <div className="flex items-center text-sm">
