@@ -4,14 +4,16 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import {useSession} from "next-auth/react";
-const admins = ["aryanbaba4199@gmail.com", "pawan2dubey@gmail.com"]
+const admins = ["aryanbaba4199@gmail.com", "pawan2dubey@gmail.com", "nidhikumari92212@gmail.com",]
 const HeaderBottom = ({ handleOpenMenu }: any) => {
     const {data : session} = useSession();
     let useremail = null;
     let admin = "";
     if (session){
         useremail = session?.user?.email;
-        admin = "Admin Panel"
+        if(admins.includes(admin)){
+            admin = "Admin Panel"
+        }  
     }
     
 

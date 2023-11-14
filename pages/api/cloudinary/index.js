@@ -48,7 +48,7 @@ export default router.handler();
 
 router.delete(async (req, res) => {
     let image_id = req.body.public_id;
-    cloudinary.v2.uploader.destory(image_id, (err, res) => {
+    cloudinary.v2.uploader.destroy(image_id, (err, res) => {
         if (err) return res.status(400).json({ success: false, err });
         res.json({ success: api});
     });
