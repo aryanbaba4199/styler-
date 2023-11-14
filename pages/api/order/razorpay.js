@@ -5,6 +5,9 @@ import Razorpay from 'razorpay';
 
 export default async function handler(req, res) {
   let user = req.body.user
+  let name = user.name;
+  let email = user.email;
+  let address = user.address;
   
   let amount = req.body.amount;
   
@@ -28,7 +31,8 @@ export default async function handler(req, res) {
   try {
     const response = await razorpay.orders.create(options);
     const orderId = response.id;
-    const razorpayOptions = {
+    
+    const rzrpayData = {
       key_id: process.env.RAZOR_MID, // Replace with your Razorpay Key ID
       amount: options.amount,
       currency: "INR",
@@ -39,20 +43,20 @@ export default async function handler(req, res) {
         res.status(200).json({ orderId, razorpayOptions });
       },
       prefill: {
-        name: `${user.name}`, 
-        email: `${user.email}`,
+        name: name, 
+        email: email,
       },
       notes: {
-        address: `${user.address}`, 
+        address: address, 
       },
       theme: {
         color: '#528FF0',
       },
     };
 
-    res.status(200).json({ orderId, razorpayOptions });
+    res.status(200).json({ orderId, rzrpayData });
   } catch (error) {
-    console.error('Error creating Razorpay order:', error);
+    console.log('Error creating Razorpay order:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }

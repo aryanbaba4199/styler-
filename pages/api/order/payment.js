@@ -44,7 +44,7 @@ router.put(async (req, res) => {
   try {
     await db.connectDb();
 
-    const { id, razorpayPaymentId } = req.body;
+    const {method, id, razorpayPaymentId } = req.body;
 
     // Check if the Razorpay payment is successful
     if (razorpayPaymentId) {
@@ -62,7 +62,21 @@ router.put(async (req, res) => {
       await db.disconnectDb();
 
       return res.json(result);
-    } else {
+    }
+    else if(method){
+      const result = await Order.findOneAndUpdate(
+        { _id: id },
+        { isPaid: true, method},
+        {new : true }
+      );
+      await db.disconnectDb();
+
+      return res.json(result);
+    }
+    
+    
+    
+    else {
       // If Razorpay payment ID is not present, handle the error.
       await db.disconnectDb();
       return res.status(400).json({ message: 'Razorpay payment ID is missing.' });

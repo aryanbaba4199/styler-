@@ -1,23 +1,18 @@
+
+
 export const paymentMethods = [
+
     {
-        name: "UPI",
+        name: "Online Payment",
         id: "upi",
         description: "GooglePay, PhonePay, Paytm, etc",
-        images: "",
+        images: "upi.png",
     },
-    {
-        name: "Cards",
-        id: "credit_card",
-        description: "Credit Card, Debit Card",
-        images: [
-            "visa",
-            "mastedcard",
-        ],
-    },
+    
     {
         name: "Cash On Delivery",
         id: "cash",
         description: "Cash on Delivery ",
-        images: [],
+        images: "cash.png",
     },
 ]

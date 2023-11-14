@@ -12,7 +12,7 @@ import {
 import AccoridanProduct from "./AccoridanProduct";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart, updateCart } from "../../redux/slices/CartSlice";
+import { addToCart, emptyCart, updateCart } from "../../redux/slices/CartSlice";
 import { useSession, signIn } from "next-auth/react";
 import { showDialog } from "@/redux/slices/DialogSlice";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
@@ -40,35 +40,8 @@ const Infos = ({ product, setActiveImg }: any) => {
 
     // --------------Buy Now Handler --------------------------------
     const buyNow = async () => {
-        setLoading(true);
-        if (!router.query.size) {
-            setError("Please Select a size");
-            setLoading(false);
-            return;
-        }
-
-        const { data } = await axios.get(
-            `/api/product/${product._id}?style=${product.style}&size=${router.query.size}`
-        );
-
-        if (qty > data.quantity) {
-            setError(
-                "The Quantity you have chosen is more than in stock. Try lowering the Quantity."
-            );
-            setLoading(false);
-        } else if (data.quantity < 1) {
-            setError("This Product is out of stock!");
-            setLoading(false);
-            return;
-        } else {
-            let _uid = `${product._id}_${product.style}_${router.query.size}`;
-            router.push({
-                pathname: '/checkout',
-                query: {
-                    product: JSON.stringify({ ...data, qty, size: data.size, _uid }),
-                },
-            });
-        }
+        addToCartHandler();
+        router.push("/cart");
     };
 
 
