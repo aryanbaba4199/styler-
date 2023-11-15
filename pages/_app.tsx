@@ -1,7 +1,7 @@
 // _app.js
-
-import Head from 'next/head';
 import "@/styles/globals.css";
+import Head from 'next/head';
+
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import { Provider } from "react-redux";
@@ -95,19 +95,38 @@ fall clothes for Indian men and women,
   const keywords = allKeywords.join(", ");
 
   return (
-    <SessionProvider session={pageProps.session}>
-      <Provider store={store}>
+    <>
+
+    <Head>
+    <title>Stylers</title>
+
+      <meta name="google-site-verification" content="google5d6bde75488aa843" />
+      <meta name="msvalidate.01" content="07D0EE7A15FC1B6280F3A12F401BE094" />
+      <meta name="description" content="Discover the latest trends in fashion at Stylers, your go-to destination for premium clothing and stylish apparel. Explore our curated collection of high-quality men's and women's fashion, featuring the hottest brands and exclusive designs. Elevate your wardrobe with chic dresses, trendy denim, and fashion-forward accessories. Experience seamless online shopping with exclusive deals, top-rated customer service, and fast delivery. Stay ahead in style with Stylers – where fashion meets convenience. Shop now!"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="robots" content="index, follow"/>
+
+
+
+      <meta name="keywords" content={keywords} />
+    </Head>
+
+    <SessionProvider session={pageProps?.session}>
+    <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <div className={inter.className}>
-            <Head>
-              {/* Include the meta tags for SEO */}
-              <meta name="keywords" content={keywords} />
-            </Head>
-            <Component {...pageProps} />
+            {pageProps?.session ? (
+              <SessionProvider session={pageProps.session}>
+                <Component {...pageProps} />
+              </SessionProvider>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </div>
         </PersistGate>
       </Provider>
     </SessionProvider>
+    </>
   );
 };
 
