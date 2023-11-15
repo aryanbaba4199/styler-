@@ -19,7 +19,7 @@ const AccountButtons = () => {
 
     const orderbtn = () => {
         if (session){
-            router.push(`/orderData/user?${session?.user?.name}`);
+            router.push("/profile/orders?tab=1&q=all-orders__");
         }
         router.push("/auth/signin")
     }
