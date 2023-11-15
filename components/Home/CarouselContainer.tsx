@@ -59,19 +59,19 @@ const CarouselContainer = () => {
                 showThumbs={false}
             >
                 <div>
-                    <Image src={slider1} alt="slider1" />
+                    <Image src={slider1} alt="slider1" priority={true} />
                 </div>
                 <div>
-                    <Image src={slider2} alt="slider1" />
+                    <Image src={slider2} alt="slider1" priority={true} />
                 </div>
                 <div>
-                    <Image src={slider3} alt="slider1" />
+                    <Image src={slider3} alt="slider1" priority={true} />
                 </div>
                 <div>
-                    <Image src={slider4} alt="slider4" />
+                    <Image src={slider4} alt="slider4" priority={true} />
                 </div>
                 <div>
-                    <Image src={slider5} alt="slider5" />
+                    <Image src={slider5} alt="slider5" priority={true} />
                 </div>
             </Carousel>
     );

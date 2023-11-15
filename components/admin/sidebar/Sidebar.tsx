@@ -119,6 +119,17 @@ const Sidebar = () => {
                             </span>
                         </Link>
                     </li>
+                    <Link
+                            className={`flex items-center p-2 rounded hover:bg-slate-200 transition duration-300 ${
+                                route === "products" ? "bg-slate-300" : ""
+                            }`}
+                            href="/admin/dashboard/orders/order"
+                        >
+                            <RectangleGroupIcon className="w-6 h-6" />
+                            <span className="show pl-3 text-slate-600">
+                                Orders
+                            </span>
+                        </Link>
                 </ul>
             </div>
             </div>

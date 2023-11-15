@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
 const OrderPage = ({ order: orderData }: any) => {
+    console.log("jdjd",orderData);
     const [order ,setOrder] = useState(orderData);
     const [loading, setLoading] = useState(false);
     console.log
@@ -48,6 +49,8 @@ export default OrderPage;
 export async function getServerSideProps(context: any) {
     const { query } = context;
     const id = query.id;
+    console.log(id);
+        
     const order = await Order.findById(id).populate("user").lean();
 
     return {
@@ -56,3 +59,4 @@ export async function getServerSideProps(context: any) {
         },
     };
 }
+

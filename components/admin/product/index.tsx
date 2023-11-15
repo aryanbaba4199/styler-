@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const AllProcuct = ({ products }: any) => {
-    // console.log('products', products)
+const AllProcuct = ({ products, onDeleteProduct }: any) => {
+    
+    // const handleDelete = (productId: string) => {
+    //     // Call the onDeleteProduct function with the productId
+    //     onDeleteProduct(productId);
+    // }
 
     return (
         <div className="my-4 ">
@@ -25,19 +29,30 @@ const AllProcuct = ({ products }: any) => {
                                     alt={product.name}
                                 />
                             </div>
-                            <Link href={`http://localhost:3000/product/${product.slug}`} target="_blank">
+                            <Link href={`/product/${product.slug}`} target="_blank">
                                 <h3 className="text-sm font-semibold">
                                     {product.name}
                                 </h3>
                             </Link>
                             <div className="mt-2 text-xs flex flex-col ">
+                            <div>Brand: {product.brand}</div>
+                            <div>Description : {product.brand}</div>
+                            <div>Rating : {product.rating}</div>
                                 <div>Sku: {product.subProducts[0].sku}</div>
                                 <div>Category: {product.category.name}</div>
+                                
+                                
                                 <div>
                                     Created:{" "}
                                     {`${created.getFullYear()}-${created.getMonth()}-${created.getDate()}`}
                                 </div>
                             </div>
+                            {/* <button
+                                onClick={() => handleDelete(product._id)}
+                                className="mt-2 bg-red-500 text-white p-1 rounded cursor-pointer"
+                            >
+                                Delete
+                            </button> */}
                         </div>
                     );
                 })}

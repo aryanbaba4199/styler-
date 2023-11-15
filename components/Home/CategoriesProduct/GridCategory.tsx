@@ -16,6 +16,7 @@ const GridCategory = ({ category, products, gridCols}: any) => {
                                     src={product.subProducts[0].images[0].url}
                                     alt={product.name}
                                     fill
+                                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                     className="object-cover rounded"
                                 />  
                             </div>

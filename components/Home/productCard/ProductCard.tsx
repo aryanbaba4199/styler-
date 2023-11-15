@@ -61,6 +61,7 @@ const ProductCard = ({ product }: any) => {
                                     }`}
                                     width={25}
                                     height={25}
+                                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                     onMouseOver={() => {
                                         setImages(
                                             product.subProducts[i].images

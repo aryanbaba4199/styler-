@@ -1,10 +1,13 @@
 import Image from "next/image";
+import { getSession } from "next-auth/react";
 
 const UserInfo = ({ order }: any) => {
+    const session = getSession();
+    let customername = session?.user?.name;
     return (
         <div className=" mb-2">
             <h3 className="text-2xl font-bold border-b pb-3 mb-3">
-                {`Customer's Order`}
+                {customername}
             </h3>
 
             <div className="flex items-center space-x-3">

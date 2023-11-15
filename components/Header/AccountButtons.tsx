@@ -17,6 +17,13 @@ const AccountButtons = () => {
     const router = useRouter();
     const { data: session } = useSession();
 
+    const orderbtn = () => {
+        if (session){
+            router.push(`/orderData/user?${session?.user?.name}`);
+        }
+        router.push("/auth/signin")
+    }
+
     return (
         <div className="flex items-center max-md:ml-auto md:space-x-6 space-x-2">
             {/* account Icon in Mobile */}
@@ -57,7 +64,7 @@ const AccountButtons = () => {
                                 </div>
                                 </Link>
                                 <button
-                                    onClick={() => signOut()}
+                                    onClick={() => signOut({callbackUrl: "/"})}
                                     className="button-orange px-2 py-[0.3rem] text-sm text-gray-900"
                                 >
                                     Sign Out
@@ -113,7 +120,9 @@ const AccountButtons = () => {
 
             <div className="link hidden md:inline">
                 <GiftIcon className="h-6"/>
-                <p className="font-bold text-sm">Orders</p>
+
+                <p className="font-bold text-sm" onClick={orderbtn}>"Orders</p>
+                
             </div>
 
             <div
