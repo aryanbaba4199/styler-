@@ -11,12 +11,22 @@ import Language from "./Language";
 import HeaderBottom from "./HeaderBottom";
 import DeliveryTo from "./DeliveryTo";
 import Link from "next/link";
+import {useSession, signIn} from "next-auth/react";
+
 
 const Header = ({title, searchHandler}: any) => {
+    const {data : session} = useSession();
+  
     const dispatch = useAppDispatch();
 
+ 
     const openMenuHandler = () => {
+        if(session){
+        
         dispatch(openMenu());
+        }else{
+            signIn();
+        }
     };
 
     return (

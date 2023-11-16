@@ -5,15 +5,20 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import {useSession} from "next-auth/react";
 import Link from "next/dist/client/link";
+import { useRouter } from "next/router";
 
 const MenuSideBar = () => {
+    const router = useRouter();
     const {data : session} = useSession();
     const dispatch = useAppDispatch();
     const menu = useAppSelector(selectMenu);
     let userName :any = "Guest";
+
+    
     if  (session){
         userName = session?.user?.name;
     }
+    
 
     return (
         <>
@@ -34,6 +39,7 @@ const MenuSideBar = () => {
                         {session ? 
                         <img
                             src= {session.user?.image}
+                            alt = "Guest"
                             className="w-16 h-16 rounded-full"
                         />
                          : 
@@ -45,15 +51,15 @@ const MenuSideBar = () => {
                     <div className="menu-sidebar flex flex-col py-2 overflow-y-scroll h-[85%]">
 
                         <h3>
-                            Profile
+                           <Link href="/profile">Profile</Link>
                         </h3>
                         <ul className="border-b pb-2">
                             <li className="group">
-                                Cart
+                                <Link href="/cart">Cart</Link>
                                 <ChevronRightIcon className="group-hover:text-gray-800"  />
                             </li>
                             <li className="group">
-                                Orders
+                                <Link href="/profile/orders?tab=1&q=all-orders__">Orders</Link>
                                 <ChevronRightIcon className="group-hover:text-gray-800" />
                             </li>
                         </ul>
@@ -61,6 +67,7 @@ const MenuSideBar = () => {
                         <h3>
                             Shop By Category
                         </h3>
+                        <Link href="/browse">
                         <ul className="border-b pb-2">
                             <li className="group">
                                 Mens Clothing
@@ -76,6 +83,7 @@ const MenuSideBar = () => {
                             </li>
                             
                         </ul>
+                        </Link>
 
                         <h3>
                             Other venchers
