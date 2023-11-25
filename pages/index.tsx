@@ -22,22 +22,35 @@ export default function Home({ products }: any) {
                     <HomeProductSwiper products={products} category="Shirt" />
                 </div>
             </main>
-            <Footer/>
+            <Footer />
             <MenuSideBar />
         </>
     );
 }
 
 export const getServerSideProps = async (context: any) => {
-    db.connectDb();
-    const products = await Product.find()
-        .populate({ path: "category", model: Category })
-        .sort({ updatedAt: -1 })
-        .lean();
-    db.disconnectDb();
-    return {
-        props: {
-            products: JSON.parse(JSON.stringify(products)),
-        },
-    };
+    try {
+        await db.connectDb();
+
+        const products = await Product?.find()
+            ?.populate({ path: "category", model: Category })
+            ?.sort({ updatedAt: -1 })
+            ?.lean();
+
+        return {
+            props: {
+                products: JSON.parse(JSON.stringify(products)),
+            },
+        };
+    } catch (error) {
+        console.error("Error fetching product data:", error);
+        return {
+            props: {
+                products: [],
+            },
+        };
+    } finally {
+        await db.disconnectDb();
+    }
 };
+

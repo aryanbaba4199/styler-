@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./productCard/ProductCard";
+import { useState } from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -9,6 +10,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules"
 
 const HomeProductSwiper = ({ products, category }: any) => {
+    
     let selectedProducts = products.filter(
         (p: any) => p.category.name === category
     );

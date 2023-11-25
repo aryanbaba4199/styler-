@@ -6,6 +6,7 @@ import ProductSwiper from "./ProductSwiper";
 const ProductCard = ({ product }: any) => {
     const [active, setActive] = useState(0);
     const [images, setImages] = useState(product.subProducts[active]?.images);
+    const [loading, setloading] = useState(false)
     const [prices, setPrices] = useState(
         product.subProducts[active]?.sizes
             .map((s: any) => s.price)
@@ -23,10 +24,20 @@ const ProductCard = ({ product }: any) => {
                 .sort((a: any, b: any) => a - b)
         );
     }, [active]);
+    if (loading) {
+        return (
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-4">Loading...</h2>
+              <div className="animate-spin h-8 w-8  border-t-4 mx-8 rounded-full border-slate-950"></div>
+            </div>
+          </div>
+        );
+      }
 
     return (
         <div className=" flex flex-col relative w-[215px] rounded p-1">
-            <Link href={`/product/${product.slug}?style=${active}${`${product.subProducts[active].sizes.length > 1 ? '&size='+ active : ''}`}`}>
+            <Link onClick={()=>setloading(true)} href={`/product/${product.slug}?style=${active}${`${product.subProducts[active].sizes.length > 1 ? '&size='+ active : ''}`}`}>
                 <ProductSwiper images={images} />
             </Link>
             {product.subProducts[active].discount > 0 && (

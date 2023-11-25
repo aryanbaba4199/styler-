@@ -1,135 +1,65 @@
+
+
 import { useAppDispatch } from "@/redux/hooks";
 import { emptyCart } from "@/redux/slices/CartSlice";
 import axios from "axios";
 import Image from "next/image";
 import { paymentMethods } from "../checkoutPage/payment/paymentMethods";
 
-
-
 import Head from "next/head";
 
-
-function loadScript(src: any) {
-    return new Promise((resolve) => {
-        const script = document.createElement('script')
-        script.src = src
-        script.onload = () => {
-            resolve(true)
-        }
-        script.onerror = () => {
-            resolve(false)
-        }
-        document.body.appendChild(script)
-    })
+function loadScript(src : any) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
 }
 
+const Payment = ({ order , setLoading, setOrder }) => {
+  let paymentMethod = order.paymentMethod;
+  const dispatch = useAppDispatch();
 
-
-
-const Payment = ({ order, setLoading, setOrder, }: any) => {
-    let paymentMethod = order.paymentMethod;
-    console.log("payment", order);
-   
-    const dispatch = useAppDispatch();
-    
-    async function displayRazorpay() {
-
-        const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
-
-        if (!res) {
-            alert('Razropay failed to load!!')
-            return
-        }
-        const response = await axios.post(`/api/order/razorpay`, {
-            amount: order.total * 100,
-            user: order.user
-        });
-
-        const { orderId, razorpayOptions } = response.data;
-        console.log(razorpayOptions);
-
-
-
-        var options = {
-            "key": process.env.RAZOR_MID, // Replace with your Razorpay Key ID
-            "amount":order.total * 100,
-            "currency": "INR",
-            "name": order.user.name,
-            "description": "Payment for Order",
-            "order_id": orderId,
-            "callback_url": "/api/order/razorpaycallback",
-            "handler": function (response: any) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature);
-            },
-
-        };
-
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-        
-            
-        
-
-    }
-
-
-//--------Checking Integretion-----------
-
-
-
-//   const initiatePayment = async () => {
-//     try {
-//       setLoading(true);
-//       const response = await axios.post(`/api/order/razorpay`, {
-//         amount : order.total * 100, 
-//         user : order.user
-//       });
-
-//       const { orderId, razorpayOptions } = response.data;
-
-//       var razor : any = new Razorpay(razorpayOptions);
-//       razor.on('payment.failed', function (response : any) {
-
-//         console.error('Payment failed:', response.error.description);
-//         setLoading(false);
-//       });
-//       razor.on('payment.success', function (response : any) {
-
-//         console.log('Payment successful:', response);
-//         paymentHandler(response.razorpay_payment_id);
-//       });
-
-//       razor.open();
-//     } catch (error) {
-//       setLoading(false);
-//       console.log('Error initiating payment:', error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     initiatePayment();
-//   }, []);
-
-
-const paymentHandler = async (rzrPaymnetId: any, rzrOrderId: any, rzrSignature: any) => {
-
+  async function initiatePaytmPayment() {
     try {
+      setLoading(true);
 
-        setLoading(true);
-        const { data } = await axios.put("/api/order/payment", {
-            id: order._id,
-            rzrPaymnetId,
-        });
-        setOrder(data);
-        dispatch(emptyCart(data));
-        setLoading(false);
+      const response = await axios.post(`/api/order/paytm`, {
+        amount: order.total * 100,
+        user: order.user,
+      });
+
+      const paytmData = response.data;
+
+      const form = document.createElement('form');
+      form.method = 'post';
+      form.action = paytmData.paytmUrl;
+      form.target = '_blank';
+
+      Object.keys(paytmData.params).forEach((key) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = paytmData.params[key];
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+
+      // You may want to handle the payment response in a callback URL
+      // For example, redirect the user to a success/failure page after payment
     } catch (error) {
-        setLoading(false);
-        console.log("Error handling payment:", error);
+      setLoading(false);
+      console.error("Error initiating Paytm payment:", error);
     }
-};
+  }
 
 const paymentBtn = () => {
     if (paymentMethod === "cash") {
@@ -137,8 +67,7 @@ const paymentBtn = () => {
         return;
     }
     else {
-        displayRazorpay();
-        return;
+        initiatePaytmPayment();
     }
 }
 
