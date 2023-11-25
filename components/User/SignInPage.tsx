@@ -67,6 +67,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
         };
 
         const res = await signIn("credentials", options);
+        console.log(res);
         setUser({
             ...user,
             login_error: "",
@@ -80,7 +81,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                 login_error: res?.error,
             });
         } else {
-            return Router.push(callbackUrl || "/");
+            // return Router.push(callbackUrl || "/");
         }
     };
     
@@ -160,7 +161,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                                     className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 md:mt-1 mx-2 cursor-pointer"
                                 >
                                     <Image
-                                        src={`/../public/assets/images/${provider.id}.png`}
+                                        src={`/assets/images/${provider.id}.png`}
                                         alt={provider.name}
                                         width={28}
                                         height={28}

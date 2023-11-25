@@ -21,10 +21,10 @@ oauth2Client.setCredentials({
     refresh_token: MAILING_SERVICE_REFRESH_TOKEN
 });
 
+
 // send email
 export const sendEmail = (to, url, txt, subject, template) => {  
     const accessToken = oauth2Client.getAccessToken();
-    
     const smtpTransport = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -48,7 +48,7 @@ export const sendEmail = (to, url, txt, subject, template) => {
         if(err) {
             console.log('error mail: ', err)
         } else {``
-            console.log('infos mail: ',infos)
+            console.log('infos mail: ', infos)
         }
     });
 }

@@ -38,7 +38,7 @@ const MenuSideBar = () => {
                     <div className="flex items-center bg-amazon-blue_light text-white px-8 py-3 ">
                         {session ? 
                         <img
-                            src= {session.user?.image}
+                            src = {session.user?.image}
                             alt = "Guest"
                             className="w-16 h-16 rounded-full"
                         />

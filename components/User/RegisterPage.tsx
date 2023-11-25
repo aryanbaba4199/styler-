@@ -67,7 +67,6 @@ const RegisterPage = ({ providers }: any) => {
                     email: email,
                     password: password
                 }
-
                 const res = await signIn("credentials", options);
                 Router.push("/")
             }, 2000);
@@ -182,7 +181,7 @@ const RegisterPage = ({ providers }: any) => {
                                 className="flex bg-white items-center w-full p-2 rounded-xl border mt-3 lg:mt-1 mx-2 cursor-pointer"
                             >
                                 <Image
-                                    src={`/../public/assets/images/${provider.id}.png`}
+                                    src={`/assets/images/${provider.id}.png`}
                                     alt={provider.name}
                                     width={28}
                                     height={28}
