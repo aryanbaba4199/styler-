@@ -121,7 +121,7 @@ const AccountButtons = () => {
             <div className="link hidden md:inline">
                 <GiftIcon className="h-6"/>
 
-                <p className="font-bold text-sm" onClick={orderbtn}>"Orders</p>
+                <p className="font-bold text-sm" onClick={orderbtn}>Orders</p>
                 
             </div>
 
