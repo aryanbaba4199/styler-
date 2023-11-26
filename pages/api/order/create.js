@@ -42,7 +42,7 @@ router.post(async (req, res) => {
         const mailOption = {
             from : process.env.FROM_EMAIL_ADDRESS,
             to : process.env.TO_EMAIL_PASS,
-            subject : "Dream Planner Booking",
+            subject : "Stylers Order Created",
             text : `
             User = ${user._id};
             Product = ${products}
