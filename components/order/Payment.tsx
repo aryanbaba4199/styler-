@@ -22,7 +22,7 @@ function loadScript(src : any) {
   })
 }
 
-const Payment = ({ order , setLoading, setOrder }) => {
+const Payment = ({ order , setLoading, setOrder } : any) => {    
   let paymentMethod = order.paymentMethod;
   const dispatch = useAppDispatch();
 
@@ -104,7 +104,7 @@ return (
         <Head>
             <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
         </Head>
-        <h3 className=" pb-2 mb-4 border-b border-b-2  text-xl font-semibold">
+        <h3 className=" pb-2 mb-4  border-b-2  text-xl font-semibold">
             Payment
         </h3>
         <div>

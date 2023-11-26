@@ -77,7 +77,7 @@ const Summary = ({
 
     return (
         <div className="mt-3">
-            <h3 className=" pb-2 mb-4 border-b border-b-2  text-xl font-semibold">
+            <h3 className=" pb-2 mb-4 border-b-2  text-xl font-semibold">
                 Order Summary
             </h3>
             {/* <div>
@@ -133,7 +133,7 @@ const Summary = ({
             </div> */}
             <div className="mx-auto md:mx-3 flex flex-col items-center">
             <button
-                className={`mx-3 cursor-pointer text-white font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 text-amazon-blue_dark  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-400 w-1/2 md:w-full my-6 p-3 rounded-full transition duration-300`}
+                className={`mx-3 cursor-pointer  font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 text-amazon-blue_dark  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-400 w-1/2 md:w-full my-6 p-3 rounded-full transition duration-300`}
                 onClick={() => placeOrderHandler()}
             >
                 Place Order

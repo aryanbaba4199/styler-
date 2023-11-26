@@ -104,7 +104,7 @@ const ListShipping = ({
             <div className="flex justify-center">
                 <button
                     onClick={() => setVisible((prev: any) => !prev)}
-                    className={`flex justify-center w-52 my-4  py-4 rounded-xl hover:text-amazon-blue_dark font-bold bg-gradient-to-r hover:from-amazon-orange hover:to-yellow-300 hover:text-amazon-blue_dark  text-slate-100 from-amazon-blue_light to-slate-500 transition duration-300 hover:scale-95 `}
+                    className={`flex justify-center w-52 my-4  py-4 rounded-xl  font-bold bg-gradient-to-r hover:from-amazon-orange hover:to-yellow-300 hover:text-amazon-blue_dark  text-slate-100 from-amazon-blue_light to-slate-500 transition duration-300 hover:scale-95 `}
                 >
                     {visible ? (
                         <span>

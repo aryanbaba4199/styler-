@@ -1,6 +1,6 @@
 // /api/order/paytm.js
 import { v4 as uuidv4 } from "uuid";
-import PaytmChecksum from "./paytmChecksum"; // Replace with the actual path to the PaytmChecksum file
+// import PaytmChecksum from "./paytmChecksum"; // Replace with the actual path to the PaytmChecksum file
 
 export default async function handler(req, res) {
   try {
@@ -23,10 +23,10 @@ export default async function handler(req, res) {
       CALLBACK_URL: `${process.env.BASE_URL}/api/order/paytm-callback`,
     };
 
-    const paytmChecksum = await PaytmChecksum.generateSignature(
-      paytmParams,
-      process.env.PAYTM_MERCHANT_KEY // Replace with your Paytm Merchant Key
-    );
+    // const paytmChecksum = await PaytmChecksum.generateSignature(
+    //   paytmParams,
+    //   process.env.PAYTM_MERCHANT_KEY // Replace with your Paytm Merchant Key
+    // );
 
     const paytmData = {
       paytmUrl: "https://securegw-stage.paytm.in/theia/processTransaction",

@@ -169,7 +169,7 @@ const AddShipping = ({
                     />
                     <button
                         type="submit"
-                        className={`mb-4 mx-3 py-4 rounded-xl bg-amazon-orange text-amazon-blue_dark font-bold bg-gradient-to-r from-amazon-orange to-yellow-300 text-amazon-blue_dark  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-300  `}
+                        className={`mb-4 mx-3 py-4 rounded-xl bg-amazon-orange  font-bold bg-gradient-to-r from-amazon-orange to-yellow-300 text-amazon-blue_dark  hover:text-slate-100 hover:from-amazon-blue_light hover:to-slate-300  `}
                     >
                         Save Address
                     </button>
