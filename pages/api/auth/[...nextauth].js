@@ -56,8 +56,11 @@ export const authOptions = {
     signIn: "/auth/signin",
   },
   session: {
-    strategy: "jwt"
+    cookie: {
+      secure: true,
+    },
   },
+  
   secret: "kbbhfkshdkfhGUGUYGiabfknskjdfbaksjbjguguguygjdfkjbkbdafuiu",
 }
 
