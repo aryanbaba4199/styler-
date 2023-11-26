@@ -11,10 +11,12 @@ import db from "../../../utils/db";
 import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
+
 db.connectDb();
 
 
 export const authOptions = {
+  
     adapter: MongoDBAdapter(clientPromise),
   // Configure one or more authentication providers
   providers: [
@@ -62,6 +64,7 @@ export const authOptions = {
 export default NextAuth(authOptions);
 
 export const signInUser = async ({ password, user }) => {
+  await db.connectDb();
   if(!password) {
     throw new Error("Please enter your password.")
   }

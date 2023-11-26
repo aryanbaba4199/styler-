@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { getProviders, getCsrfToken, getSession } from "next-auth/react";
 
-
+import GoogleProvider from "next-auth/providers/google"
 
 
 
