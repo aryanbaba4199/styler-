@@ -29,13 +29,13 @@ export const getServerSideProps = async (context: any) => {
     const slug = query.slug;
     const style = query.style || 0;
     const size = query.size || 0;
-    db.connectDb();
+    await db.connectDb();
     let product = await Product.findOne({ slug })
         .populate({ path: "category", model: Category })
         .populate({ path: "subCategories", model: SubCategory })
         .populate({ path: "reviews.reviewBy", model: User })
         .lean();
-    let subProduct = product.subProducts[style];
+    let subProduct = product?.subProducts[style];
     let prices = subProduct.sizes
         .map((s: any) => s.price)
         .sort((a: any, b: any) => a - b);
@@ -47,7 +47,7 @@ export const getServerSideProps = async (context: any) => {
         sizes: subProduct.sizes,
         discount: subProduct.discount,
         sku: subProduct.sku,
-        colors: product.subProducts.map((p: any) => p.color),
+        colors: product?.subProducts.map((p: any) => p.color),
         priceRange:
             prices.discount > 1
                 ? `From ${(prices[0] - prices[0] / subProduct.discount).toFixed(
@@ -82,7 +82,7 @@ export const getServerSideProps = async (context: any) => {
                 percentage: calculatePercentage("1"),
             },
         ],
-        allSizes: product.subProducts
+        allSizes: product?.subProducts
             .map((p: any) => p.sizes)
             .flat()
             .sort((a: any, b: any) => a.size - b.size)
