@@ -7,9 +7,10 @@ import InfosShipping from "./InfosShipping";
 import MainSwiper from "./MainSwiper";
 import Reviews from "./reviews/Reviews";
 import SimilarSwiper from "./SimilarSwiper";
+
 const ProductPage = ({ product }: any) => {
     const [activeImg, setActiveImg] = useState("");
-     // console.log("active: ", activeImg);
+    // console.log("active: ", activeImg);
 
     return (
         <div className="w-full bg-white h-auto px-3 mb-6 md:px-2">

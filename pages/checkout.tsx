@@ -13,7 +13,7 @@ import Payment from "@/components/checkoutPage/payment/Payment";
 import Summary from "@/components/checkoutPage/Summary/Summary";
 import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
-const Checkout = ({ cart, user }: any) => {
+const Checkout = ({ cart, user}: any) => {
     console.log("Checkout", cart);
 
     const [addresses, setAddresses] = useState(user?.address || []);

@@ -95,7 +95,7 @@ export const getServerSideProps = async (context: any) => {
     
     function calculatePercentage(num: any) {
         return (
-            (product.reviews.reduce((total: any, review: any) => {
+            (product?.reviews.reduce((total: any, review: any) => {
                 return (
                     total +
                     (review.rating == Number(num) ||
@@ -103,7 +103,7 @@ export const getServerSideProps = async (context: any) => {
                 );
             }, 0) *
                 100) /
-            product.reviews.length
+            product?.reviews.length
         ).toFixed(1);
     }
 
