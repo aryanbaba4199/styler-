@@ -81,7 +81,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                 login_error: res?.error,
             });
         } else {
-            // return Router.push(callbackUrl || "/");
+            return Router.push(callbackUrl || "/");
         }
     };
     
