@@ -8,10 +8,11 @@ import nodemailer from "nodemailer";
 import Mail from "../../../models/mail";
 
 const router = createRouter().use(auth);
+db.connectDb;
 
 router.post(async (req, res) => {
+    
     try {
-        db.connectDb;
         const {
             products,
             shippingAddress,
@@ -21,17 +22,11 @@ router.post(async (req, res) => {
             couponApplied,
         } = req.body;
         const user = await User.findById(req.user);
-        const newOrder = await new Order({
-            user: user._id,
-            products,
-            shippingAddress,
-            paymentMethod,
-            total,
-            totalBeforeDiscount,
-            couponApplied,
-        }).save();
+        
+        
 
         //---------------Send Order to Gmail------------------------
+        
         const transporter = nodemailer.createTransport({
             service : "Gmail",
             auth : {
@@ -39,6 +34,7 @@ router.post(async (req, res) => {
                 pass: process.env.FROM_EMAIL_PASS,
             }
         })
+        
         const mailOption = {
             from : process.env.FROM_EMAIL_ADDRESS,
             to : process.env.TO_EMAIL_PASS,
@@ -52,11 +48,22 @@ router.post(async (req, res) => {
             Total Before Discount = ${totalBeforeDiscount}
             ` 
         };
+        
         await transporter.sendMail(mailOption);
             const mail = await Mail.create(req.body)
             
 
-        db.disconnectDb();
+            const newOrder = await new Order({
+                user: user._id,
+                products,
+                shippingAddress,
+                paymentMethod,
+                total,
+                totalBeforeDiscount,
+                couponApplied,
+            }).save();    
+
+        await db.disconnectDb();
 
         return res.json({ order_id: newOrder._id });
     } catch (error) {

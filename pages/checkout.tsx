@@ -14,7 +14,7 @@ import Summary from "@/components/checkoutPage/Summary/Summary";
 import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
 const Checkout = ({ cart, user}: any) => {
-    console.log("Checkout", cart);
+    
 
     const [addresses, setAddresses] = useState(user?.address || []);
     const [paymentMethod, setPaymentMethod] = useState("paypal");
@@ -70,11 +70,11 @@ const Checkout = ({ cart, user}: any) => {
 export default Checkout;
 
 export async function getServerSideProps(context: any) {
-    db.connectDb();
+    await db.connectDb();
     const session = await getSession(context);
     const user = await User.findById(session?.user?.id);
     const cart = await Cart.findOne({ user: user?._id });
-    db.disconnectDb();
+    await db.disconnectDb();
     // console.log("session > ", session, "user > ", user, "cart > ", cart);
     if (!cart) {
         return {

@@ -13,12 +13,12 @@ router.get(async (req, res) => {
     const style = req.query.style || 0;
     const size = req.query.size || 0;
 
-    db.connectDb();
+    await db.connectDb();
     const product = await Product.findById(id).lean();
     let discount = product.subProducts[style].discount;
     let priceBefore = product.subProducts[style].sizes[size].price;
     let price = discount ? priceBefore - priceBefore / discount : priceBefore;
-    db.disconnectDb();
+    await db.disconnectDb();
 
     res.json({
       _id: product._id,
