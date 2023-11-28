@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+import mongoose from "mongoose";
 
 const mailSchema = new mongoose.Schema({
     name: {
@@ -17,8 +17,8 @@ const mailSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-})
+});
 
-mongoose.models = {};
+const Mail = mongoose.models.Mail || mongoose.model("Mail", mailSchema);
 
-export const Mail = mongoose.model("mail", mailSchema)
+export default Mail;
