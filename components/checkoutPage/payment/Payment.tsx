@@ -30,7 +30,7 @@ const PaymentCheckout = ({ paymentMethod, setPaymentMethod, profile }: any) => {
                         <div className="flex items-center ">
                             <Image
                                 
-                                src={`/../public/assets/images/${payment.id}.png`}
+                                src={`/assets/images/${payment.id}.png`}
                                 alt={payment.name}
                                 width={40}
                                 height={40}

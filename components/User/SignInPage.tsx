@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
 import { getProviders } from "next-auth/react";
-import GoogleProvider from "next-auth/providers/google"
+
 
 
 import { signIn } from "next-auth/react";
