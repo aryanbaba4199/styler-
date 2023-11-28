@@ -2,15 +2,12 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import amazonLogoDark from "../../public/assets/images/amazon-dark.png";
 import LoginInput from "./LoginInput";
 import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
-import { getProviders } from "next-auth/react";
-
-
 
 import { signIn } from "next-auth/react";
 import DotLoaderSpinner from "../loaders/dotLoader/DotLoaderSpinner";
@@ -22,28 +19,12 @@ const initialUser = {
 };
 
 const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
-    
-    const [provid, setprovid] = useState(providers);
     const [loading, setLoading] = useState(false);
     const [needHelp, setNeedHelp] = useState(false);
     const [user, setUser] = useState(initialUser);
     const { login_email, login_password, login_error } = user;
-    
-    useEffect(() => {
-        (async () => {
-          const res = await getProviders();
-          if(providers.length===0){
-            setprovid(res);
-          }
-          
-        })();
-      }, []);
-
-
-
 
     const handleChange = (e: any) => {
-        e.preventDefault();
         const { name, value } = e.target;
         setUser({
             ...user,
@@ -67,7 +48,6 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
         };
 
         const res = await signIn("credentials", options);
-        console.log(res);
         setUser({
             ...user,
             login_error: "",
@@ -84,7 +64,8 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
             return Router.push(callbackUrl || "/");
         }
     };
-    
+   
+
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
@@ -150,7 +131,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                     </div>
 
                     <div className="flex flex-col md:flex-row">
-                        {provid.map((provider: any) => {
+                        {providers.map((provider: any) => {
                             if (provider.name === "Credentials") {
                                 return;
                             }
@@ -213,24 +194,13 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                 before:left-1 before:top-[50%] before:absolute before:bg-slate-200 before:h-[1px] before:w-[20%] sm:before:w-[25%] md:before:w-[31%]
                 after:right-1 after:top-[50%] after:absolute after:bg-slate-200 after:h-[1px] after:w-[20%] sm:after:w-[25%] md:after:w-[31%]"
                     >
-                        New to Amazon?
+                        New to Stylers?
                     </span>
                     <Link
                         href="/auth/register"
                         className="flex items-center justify-center w-full mt-4 button-orange  py-[0.5rem] text-sm text-gray-900 active:from-amazon-orange active:to-yellow-200 "
                     >
-                        Create your 
-                        <Image
-                            src={amazonLogoDark}
-                            width={90}
-                            height={16}
-                            className="mx-2 mt-1"
-                            alt="Stylers"
-
-                        >
-
-                        </Image>
-                         account
+                        Create your Stylers account
                     </Link>
                 </div>
             </div>

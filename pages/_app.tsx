@@ -1,6 +1,9 @@
 // _app.js
 import "@/styles/globals.css";
 import Head from 'next/head';
+import xss from 'xss';
+import "./trusted"
+import * as DOMPurify from "dompurify"
 
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
@@ -117,7 +120,11 @@ fall clothes for Indian men and women,
           <div className={inter.className}>
             {pageProps?.session ? (
               <SessionProvider session={pageProps.session}>
-                <Component {...pageProps} />
+                <Component {...pageProps} 
+                dangerouslySetInnerHTML={{
+                  __html: props.sanitizedHtml,
+                }}
+                />
               </SessionProvider>
             ) : (
               <Component {...pageProps} />
@@ -134,5 +141,16 @@ MyApp.getInitialProps = async () => {
   const productData = await fetchProductData();
   return { productData };
 };
+export function getServerSideProps() {
+  const sanitizedHtml =
+    DOMPurify(new JSDOM('<!DOCTYPE html>').window).sanitize(
+      '<img src=x onerror=alert(1)//>'
+    );
+  return {
+    props: {
+      sanitizedHtml: sanitizedHtml,
+    },
+  };
+}
 
 export default MyApp;
