@@ -1,25 +1,21 @@
-import dynamic from 'next/dynamic'
-import {useState} from 'react'
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import DOMPurify from 'dompurify';
-
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
     ssr: false,
     loading: () => <p>Loading...</p>,
-})
+});
 
-// quill modules definitions
-//...
 
-export default function articles() {
+export default function Articles() {
     const [text, setText] = useState(preData);
 
     function handleTextChange(content, delta, source, editor) {
-        //let str = JSON.stringify(editor.getContents());
-        //let parsed = JSON.parse(str)
         setText(editor.getContents());
         const cleaned = DOMPurify.sanitize(editor.getHTML());
         console.log('Cleaned Html: ', cleaned);
+    }
 
     return (
         <div className="quill_container">
@@ -31,9 +27,8 @@ export default function articles() {
                     theme="snow"
                     value={text}
                     onChange={handleTextChange}
-                  />
-             </div>
+                />
+            </div>
         </div>
     );
-    }
-};
+}
