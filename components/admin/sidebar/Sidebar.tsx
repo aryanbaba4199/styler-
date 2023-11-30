@@ -39,7 +39,7 @@ const Sidebar = () => {
                 <div className="relative w-10 h-10 ">
                     <img
                         src={session?.user?.name ? session?.user?.image : 'https://i.stack.imgur.com/34AD2.jpg'}
-                        alt="admin-logo"
+                        alt="admin"
                         className="object-contain w-10 h-10 rounded-full"
                     />
                 </div>

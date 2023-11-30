@@ -7,7 +7,7 @@ import { getProviders, getCsrfToken, getSession } from "next-auth/react";
 
 const SignIn = ({ providers, csrfToken, callbackUrl }: any) => {
     providers = Object.values(providers);
-    console.log(providers);
+    
     
     return ( 
         <>

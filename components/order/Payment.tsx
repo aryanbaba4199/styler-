@@ -130,7 +130,7 @@ return (
                             </label>
                             <div className="flex items-center ">
                                 <Image
-                                    src={`/../public/assets/images/${payment.id}.png`}
+                                    src={`/assets/images/${payment.id}.png`}
                                     alt={payment.name}
                                     width={40}
                                     height={40}
@@ -149,12 +149,12 @@ return (
                     );
                 }
             })}
-            <button
+            {/* <button
                 className=" mt-2 w-full rounded-xl bg-amazon-blue_light text-white p-4 font-semibold text-2xl hover:bg-amazon-blue_dark hover:scale-95 transition"
                 onClick={paymentBtn}
             >
                 Pay
-            </button>
+            </button> */}
         </div>
     </>
 );

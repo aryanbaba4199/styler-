@@ -10,18 +10,18 @@ import db from "../../../utils/db";
 import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
-db.connectDb();
 
-export const authOptions = {
+
+db.connectDb()
+export const authOptions  = {
     adapter: MongoDBAdapter(clientPromise),
-  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials, req) {
         const email  = credentials.email;
         const password = credentials.password;
-        const user = await User.findOne({ email })
+        const user = await User.find({ email })
         if (user) {
           return signInUser({ password, user });
         } else {
@@ -42,6 +42,7 @@ export const authOptions = {
   callbacks: {
     async session({ session, token }) {
       let user = await User.findById(token.sub);
+      
       session.user.id = user.token || user.id.toString();
       session.user.role = user.role || "user";
       token.role = user.role || "user";
@@ -57,7 +58,9 @@ export const authOptions = {
   secret: process.env.JWT_SECRET,
 }
 
+
 export default NextAuth(authOptions);
+db.connectDb()
 
 export const signInUser = async ({ password, user }) => {
   if(!password) {

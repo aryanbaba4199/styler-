@@ -5,7 +5,7 @@ const PaymentCheckout = ({ paymentMethod, setPaymentMethod, profile }: any) => {
     return (
         <>
             {!profile && (
-                <h3 className=" pb-2 mb-4 border-b border-b-2  text-xl font-semibold">
+                <h3 className=" pb-2 mb-4 border-b-2  text-xl font-semibold">
                     Payment Method
                 </h3>
             )}
@@ -22,6 +22,7 @@ const PaymentCheckout = ({ paymentMethod, setPaymentMethod, profile }: any) => {
                             <input
                                 type="radio"
                                 name="payment"
+                                
                                 id={payment.id}
                                 readOnly
                                 checked={paymentMethod == payment.id}

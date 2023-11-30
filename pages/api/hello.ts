@@ -7,11 +7,11 @@ type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  db.connectDb();
-  db.disconnectDb()
-  res.status(200).json({ name: 'John Doe' })
+  await db.connectDb();
+  await db.disconnectDb();
+  res.status(200).json({ name: 'Raushan Kumar' })
 }

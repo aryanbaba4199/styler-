@@ -32,10 +32,10 @@ export const getServerSideProps = async (context: any) => {
     try {
         await db.connectDb();
 
-        const products = await Product?.find()
-            ?.populate({ path: "category", model: Category })
-            ?.sort({ updatedAt: -1 })
-            ?.lean();
+        const products = await Product.find()
+            .populate({ path: "category", model: Category })
+            .sort({ updatedAt: -1 })
+            .lean();
 
         return {
             props: {
@@ -50,6 +50,7 @@ export const getServerSideProps = async (context: any) => {
             },
         };
     } finally {
+        // Ensure disconnecting from the database even if an error occurs
         await db.disconnectDb();
     }
 };

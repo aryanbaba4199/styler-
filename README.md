@@ -55,10 +55,10 @@ This project is a shopping website that looks like Amazon website
 
 ```bash
 # Clone the repository
-git clone https://github.com/no2ehi/full-amazon-clone
+git clone https://github.com/aryanbaba4199/styler-
 
 # Go into the directory
-cd full-amazon-clone
+cd styler-
 
 # Install dependencies
 npm i
@@ -74,10 +74,10 @@ Open http://localhost:3000 with your browser to see the result.
     
 ## Feedback
 
-If you have any feedback, please reach out to us at ruholahn2@gmail.com
+If you have any feedback, please reach out to us at aryanbaba4199@gmail.com
 
 
 ## Author
 
-- [@no2ehi](https://www.github.com/no2ehi)
+- [@aryanbaba4199](https://www.github.com/aryanbaba4199@gmail.com)
 

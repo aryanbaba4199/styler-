@@ -121,7 +121,7 @@ const AccountButtons = () => {
             <div className="link hidden md:inline">
                 <GiftIcon className="h-6"/>
 
-                <p className="font-bold text-sm" onClick={orderbtn}>Orders</p>
+                <Link href='/profile/orders?tab=1&q=all-orders__' className="font-bold text-sm" >Orders</Link>
                 
             </div>
 
