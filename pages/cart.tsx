@@ -9,7 +9,7 @@ import { getSession } from "next-auth/react";
 
 const Cart = () => {
     const { cart } = useAppSelector((state: any) => ({ ...state }));
-    console.log('cart > ', cart);
+    
     return (
         <>
             <Header />

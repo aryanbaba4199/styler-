@@ -1,17 +1,21 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-import db from "../../utils/db";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import clientPromise from '../../lib/mongodb';
 
 type Data = {
-  name: string
-}
+  name: string;
+};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  await db.connectDb();
-  await db.disconnectDb();
-  res.status(200).json({ name: 'Raushan Kumar' })
+  try {
+    const client = await clientPromise;
+    // Do your database operations using 'client'
+
+    res.status(200).json({ name: 'Raushan Kumar' });
+  } catch (error : any) {
+    console.error('Error connecting to MongoDB:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 }

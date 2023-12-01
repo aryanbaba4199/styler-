@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Product = ({ cart }: any) => {
-    console.log("cart", cart);
+    
     return (
         <div className="md:flex-row mx-auto text-center">
             <div className="flex flex-col pb-2 mb-4 border-b border-b-2 md:flex-row">

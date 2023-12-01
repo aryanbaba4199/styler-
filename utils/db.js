@@ -1,39 +1,36 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const connection = {};
 
 async function connectDb() {
-  if (connection.isConnected) {
-    console.log("Ready database");
-    return;
-  }
-
-  if (mongoose.connections.length > 0) {
-    connection.isConnected = await mongoose.connections[0].readyState;
-    if (connection.isConnected === 1) {
-      console.log("Using previous connection to the database");
+  try {
+    if (connection.isConnected) {
+      console.log('Ready database');
       return;
     }
-    await mongoose.disconnect();
+
+    const db = await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log('New connection to the database');
+    connection.isConnected = db.connections[0].readyState;
+  } catch (error) {
+    console.error('Error connecting to the database:', error);
+    throw error;
   }
-
-  const db = await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  console.log("New connection to the database");
-  connection.isConnected = db.connections[0].readyState;
 }
 
 async function disconnectDb() {
-  if (connection.isConnected) {
-    if (process.env.NODE_ENV === "production") {
+  try {
+    if (connection.isConnected) {
       await mongoose.disconnect();
       connection.isConnected = false;
-    } else {
-      console.log("Not disconnected from the database");
     }
+  } catch (error) {
+    console.error('Error disconnecting from the database:', error);
+    throw error;
   }
 }
 

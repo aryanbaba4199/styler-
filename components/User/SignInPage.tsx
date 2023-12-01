@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
 import Router from "next/router";
 
+
 import { signIn } from "next-auth/react";
 import DotLoaderSpinner from "../loaders/dotLoader/DotLoaderSpinner";
 
@@ -65,7 +66,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
         }
     };
    
-
+    console.log(providers);
     return (
         <>
             {loading && <DotLoaderSpinner loading={loading} />}
@@ -87,8 +88,9 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                             login_email,
                             login_password,
                         }}
-                        validationSchema={loginValidation}
-                        onSubmit={() => signInHandler()}
+                        // validationSchema={loginValidation}
+                        // onSubmit={() => signInHandler()}
+                       
                     >
                         {(form) => (
                             <Form method="post" action="/api/auth/signin/email">
@@ -101,6 +103,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                                     id="input-email"
                                     type="text"
                                     icon="email"
+                                    disabled
                                     name="login_email"
                                     placeholder="please type Email Address"
                                     onChange={handleChange}
@@ -110,6 +113,7 @@ const SignInPage = ({ providers, csrfToken, callbackUrl }: any) => {
                                     id="input-passowrd"
                                     type="password"
                                     icon="password"
+                                    disabled
                                     name="login_password"
                                     placeholder="please type Password"
                                     onChange={handleChange}

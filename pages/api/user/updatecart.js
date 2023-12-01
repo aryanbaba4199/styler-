@@ -1,4 +1,8 @@
-import {createRouter} from "next-connect";
+
+
+
+
+import { createRouter } from "next-connect";
 import db from "../../../utils/db";
 import Product from "../../../models/Product";
 import User from "../../../models/User";
@@ -8,6 +12,8 @@ import auth from "../../../middleware/auth";
 const router = createRouter().use(auth);
 
 router.post(async (req, res) => {
+   db.connectDb;
+   
     try {
         db.connectDb;
         const promises = req.body.products.map( async(p) => {
@@ -15,7 +21,7 @@ router.post(async (req, res) => {
             let originalPrice = Number(productDb.subProducts[p.style].sizes.find((x) => x.size == p.size).price);
             let quantity = Number(productDb.subProducts[p.style].sizes.find((x) => x.size == x.size).qty);
             let discount = Number(productDb.subProducts[p.style].discount);
-            console.log('price', originalPrice)
+            
             return {
                 ...p,
                 priceBefore: originalPrice,
@@ -25,8 +31,8 @@ router.post(async (req, res) => {
             }
         });
         const data = await Promise.all(promises);
-        db.disconnectDb();
-
+        
+        
         return res
             .status(200)
             .json(data);

@@ -1,33 +1,44 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "./lib/mongodb"
 import CredentialsProvider from "next-auth/providers/credentials";
-
-import db from "../../../utils/db";
 import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
 
-
-db.connectDb()
-export const authOptions  = {
-    adapter: MongoDBAdapter(clientPromise),
+export default NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Credentials",
-      async authorize(credentials, req) {
-        const email  = credentials.email;
-        const password = credentials.password;
-        const user = await User.find({ email })
-        if (user) {
-          return signInUser({ password, user });
-        } else {
-          throw new Error("This email does not exist.")
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        const { email, password } = credentials;
+
+        try {
+          // Find user by email
+          const user = await User.findOne({ email });
+
+          if (!user) {
+            return Promise.resolve(null); // User not found
+          }
+
+          // Compare passwords
+          const isValidPassword = await bcrypt.compare(password, user.password);
+
+          if (!isValidPassword) {
+            return Promise.resolve(null); // Incorrect password
+          }
+
+          // Successful authentication, return the user object
+          return Promise.resolve(user);
+        } catch (error) {
+          console.error("Error during authentication:", error);
+          return Promise.resolve(null); // Error during authentication
         }
-      }
+      },
     }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
@@ -37,39 +48,21 @@ export const authOptions  = {
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    // ...add more providers here
+    // Add other providers as needed (e.g., GitHub, Google)
   ],
   callbacks: {
     async session({ session, token }) {
-      let user = await User.findById(token.sub);
-      
-      session.user.id = user.token || user.id.toString();
-      session.user.role = user.role || "user";
-      token.role = user.role || "user";
-      return session; 
+      // Add custom session handling logic if needed
+      return session;
     },
   },
+  session: {
+    strategy: "jwt",
+  },
+  
   pages: {
     signIn: "/auth/signin",
   },
-  session: {
-    strategy: "jwt"
-  },
   secret: process.env.JWT_SECRET,
-}
-
-
-export default NextAuth(authOptions);
-db.connectDb()
-
-export const signInUser = async ({ password, user }) => {
-  if(!password) {
-    throw new Error("Please enter your password.")
-  }
-  const testPassword = await bcrypt.compare(password, user.password)
-  if(!testPassword) {
-    throw new Error("Email or Password is Wrong!")
-  } else {
-    return user;
-  }
-}
+  // Add other options as needed
+});

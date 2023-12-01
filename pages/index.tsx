@@ -49,9 +49,6 @@ export const getServerSideProps = async (context: any) => {
                 products: [],
             },
         };
-    } finally {
-        // Ensure disconnecting from the database even if an error occurs
-        await db.disconnectDb();
-    }
+    } 
 };
 

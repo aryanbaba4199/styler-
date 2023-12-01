@@ -69,7 +69,7 @@ const CartPage = ({ cart }: any) => {
     }, [selected]);
 
     const saveCartToDbHandler = async () => {
-        if (session) {
+        if (selected) {
             setLoading(true);
             const res = await saveCart(selected);
             router.push("/checkout");
