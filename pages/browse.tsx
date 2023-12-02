@@ -361,6 +361,7 @@ const Browse = ({
 export default Browse;
 
 export async function getServerSideProps(context: any) {
+    await db.connectDb();
     const { query } = context;
     const searchQuery = query.search || "";
     const categoryQuery = query.category || "";

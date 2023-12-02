@@ -21,6 +21,7 @@ router.post(async (req, res) => {
       totalBeforeDiscount,
       couponApplied,
     } = req.body;
+    await db.connectDb();
     const user = await User.findById(req.user);
 
     //---------------Send Order to Gmail------------------------

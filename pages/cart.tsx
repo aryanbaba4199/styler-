@@ -4,6 +4,7 @@ import CartPage from "@/components/CartPage/CartPage";
 import Empty from "@/components/CartPage/Empty";
 import { useAppSelector } from "@/redux/hooks";
 import { getSession } from "next-auth/react";
+import db from "@/utils/db";
 
 
 
@@ -28,6 +29,7 @@ const Cart = () => {
 export default Cart;
 
 export async function getServerSideProps(context: any) {
+    await db.connectDb();
     const session = await getSession(context);
     if (!session) {
         return {

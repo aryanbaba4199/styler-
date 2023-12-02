@@ -32,7 +32,7 @@ const BrandsFilter = ({ brands, brandHandler, replaceQuery }: any) => {
                                 } flex justify-center rounded border bg-white py-1 hover:border-slate-500`}
                             >
                                 <Image
-                                    src={`/../public/assets/images/${brand.toLowerCase()}.png`}
+                                    src={`/assets/images/${brand.toLowerCase()}.png`}
                                     width={50}
                                     height={50}
                                     alt={brand.toLowerCase()}

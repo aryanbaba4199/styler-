@@ -6,6 +6,7 @@ import Total from "@/components/order/Total";
 import UserInfo from "@/components/order/UserInfo";
 import Order from "../../models/Order";
 import { useEffect, useState } from "react";
+import db from "@/utils/db";    
 import DotLoaderSpinner from "@/components/loaders/dotLoader/DotLoaderSpinner";
 
 const OrderPage = ({ order: orderData }: any) => {
@@ -50,6 +51,7 @@ export async function getServerSideProps(context: any) {
     const { query } = context;
     const id = query.id;
     console.log(id);
+    await db.connectDb();
         
     const order = await Order.findById(id).populate("user").lean();
 

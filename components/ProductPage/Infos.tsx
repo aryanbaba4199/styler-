@@ -171,6 +171,8 @@ const Infos = ({ product, setActiveImg }: any) => {
                 <div className="mt-2 flex gap-3">
                     {product.colors &&
                         product.colors.map((color: any, i: any) => (
+                            <>
+                            
                             <span
                                 key={i}
                                 className={`rounded-full w-11 h-11 hover:outline outline-1 hover:outline-offset-[3px] hover:outline-slate-400  transition-all transition ${
@@ -188,15 +190,21 @@ const Infos = ({ product, setActiveImg }: any) => {
                                 <Link
                                     href={`/product/${product.slug}/?style=${i}`}
                                 >
-                                    <Image
+                                        
+                                        <img
                                         className="rounded-full object-cover h-11"
                                         width={44}
                                         height={44}
+                                        style={{ backgroundColor: color.color }}
                                         src={color.image}
-                                        alt={color.color}
+
+                                        alt = ""
+                                        
                                     />
+                                    
                                 </Link>
                             </span>
+                            </>
                         ))}
                 </div>
             </div>

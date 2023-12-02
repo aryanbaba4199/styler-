@@ -7,9 +7,9 @@ import { createActivationToken } from "../../../utils/tokens";
 import { sendEmail } from "../../../utils/sendEmails";
 import { activateEmailTemplate } from "../../../emails/activateEmailTemplate";
 
-const router = createRouter();
+const handler = createRouter();
 
-router.post(async (req, res) => {
+handler.post(async (req, res) => {
     try {
         await db.connectDb();
         const { name, email, password } = req.body;
@@ -56,4 +56,4 @@ router.post(async (req, res) => {
     }
 });
 
-export default router.handler();
+export default handler.handler();

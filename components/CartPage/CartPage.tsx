@@ -74,7 +74,7 @@ const CartPage = ({ cart }: any) => {
             const res = await saveCart(selected);
             router.push("/checkout");
         } else {
-            router.push("/auth/signin");
+            router.push("/");
         }
     };
 
