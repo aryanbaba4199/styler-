@@ -2,7 +2,7 @@ import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
-import amazonLogo from '../public/assets/images/amazon-logo.png';
+import StylersLogo from '../public/assets/images/StlersLight.png';
 import enFlag from "../public/assets/images/en-flag.png";
 
 
@@ -70,7 +70,7 @@ const Footer = () => {
             </div>
 
             <div className="flex max-md:flex-col items-center bg-amazon-blue_light justify-center py-1">
-                <Image src={amazonLogo} alt="amazon-log" className="object-contain w-20 h-20 md:mr-20" />
+                <Image src={StylersLogo} alt="amazon-log" className="object-contain w-20 h-20 md:mr-20" />
 
                 <div className="flex items-center space-x-2 max-md:mb-4">
                     <div className="flex space-around border rounded border-slate-400 px-2 py-2 text-xs text-slate-100 cursor-pointer">

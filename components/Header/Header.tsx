@@ -5,7 +5,7 @@ import { openMenu } from "@/redux/slices/MenuSlice";
 import Search from "./Search";
 
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import amazonLogo from "../../public/assets/images/amazon-logo.png";
+import StylerLogo from "../../public/assets/images/StlersLight.png";
 import AccountButtons from "./AccountButtons";
 import Language from "./Language";
 import HeaderBottom from "./HeaderBottom";
@@ -53,8 +53,8 @@ const Header = ({title, searchHandler}: any) => {
                             {/* Logo */}
                             <Link href="/">
                                 <Image
-                                    src={amazonLogo}
-                                    alt="amazon-logo"
+                                    src={StylerLogo}
+                                    alt="Stylers"
                                     className="object-contain w-20 md:w-28 pt-2"
                                 />
                             </Link>

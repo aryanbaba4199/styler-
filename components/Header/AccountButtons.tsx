@@ -12,10 +12,12 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks";
 
+
 const AccountButtons = () => {
     const cart = useAppSelector((state: any) => state.cart.cartItems);
     const router = useRouter();
     const { data: session } = useSession();
+    const [loading, setLoading] = useState(false); 
 
     const orderbtn = () => {
         if (session){
@@ -23,6 +25,16 @@ const AccountButtons = () => {
         }
         router.push("/auth/signin")
     }
+    if (loading) {
+        return (
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-4">Loading...</h2>
+              <div className="animate-spin h-8 w-8  border-t-4 mx-8 rounded-full border-slate-950"></div>
+            </div>
+          </div>
+        );
+      }
 
     return (
         <div className="flex items-center max-md:ml-auto md:space-x-6 space-x-2">
@@ -118,10 +130,10 @@ const AccountButtons = () => {
                 </div>
             </div>
 
-            <div className="link hidden md:inline">
+            <div className="link hidden md:inline" >
                 <GiftIcon className="h-6"/>
 
-                <Link href='/profile/orders?tab=1&q=all-orders__' className="font-bold text-sm" >Orders</Link>
+                <Link onClick={()=>setLoading(true)} href='/profile/orders?tab=1&q=all-orders__' className="font-bold text-sm" >Orders</Link>
                 
             </div>
 

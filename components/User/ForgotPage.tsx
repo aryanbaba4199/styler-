@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import amazonLogoDark from "../../public/assets/images/amazon-dark.png";
+import StylersDark from "../../public/assets/images/stylersDark.png";
 import LoginInput from "./LoginInput";
 import * as Yup from "yup";
 import ButtonInput from "./ButtonInput";
@@ -70,8 +70,8 @@ const ForgotPage = ({ providers }: any) => {
             <div className="mx-auto my-2">
                 <Link href="/">
                     <Image
-                        src={amazonLogoDark}
-                        alt="amazon-logo"
+                        src={StylersDark}
+                        alt="Stylers"
                         className="object-contain w-28 md:w-48 pt-2"
                     />
                 </Link>

@@ -94,7 +94,9 @@ const Product = ({ product, selected, setSelected, cart }: any) => {
                 <div className="my-2 w-fit  flex items-center space-x-3 px-3 py-2 bg-slate-100 rounded-full">
                     <div className="relative w-10 h-10">
                         <Image
+                        
                             src={product.color.image}
+                            style={{backgroundColor: product.color.color}}
                             fill
                             className="object-contained rounded-full outline outline-1 outline-offset-2 outline-slate-400"
                             alt={product.name}

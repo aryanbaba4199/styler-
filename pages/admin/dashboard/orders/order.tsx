@@ -93,12 +93,12 @@ export default function Orders() {
       <Header />
       {isAdmin ? (
         <div className="container mx-auto mt-8">
-          <h1 className="text-3xl font-bold mb-6">Your Orders</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h1 className="text-3xl font-bold mb-6 p-2">Orders</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shadow-2xl shadow-black">
             {orders.map((order) => (
               <div
                 key={order._id}
-                className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition relative"
+                className="bg-white p-6 rounded-md shadow-md hover:shadow-2x1 hover:shadow-black transition relative"
               >
                 {/* Order status and details */}
                 <div className="mb-4">

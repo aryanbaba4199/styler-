@@ -18,9 +18,9 @@ const Layout = ({ user, tab, title, children }: any) => {
         <div className="md:hidden col-span-1 flex">
           <button
             onClick={toggleMobileMenu}
-            className="text-2xl mx-1 p-1 focus:outline-none bg-black text-white rounded-lg"
+            className=" mx-1 p-2 focus:outline-none bg-black text-white rounded-lg hover:shadow-2xl"
           >
-            ☰
+            Order Menu
           </button>
         </div>
         <section

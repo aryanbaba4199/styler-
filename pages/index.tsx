@@ -7,11 +7,16 @@ import Category from "@/models/Category";
 import HomeProductSwiper from "@/components/Home/HomeProductSwiper";
 import CategoriesProduct from "@/components/Home/CategoriesProduct/CategoriesProducts";
 import db from "../utils/db";
+import { NextSeo } from "next-seo";
 
 export default function Home({ products }: any) {
     return (
         <>
             <Header title="Stylers" />
+            <NextSeo
+                title="Stylers.in"
+                description="Explore our latest collection of fashion items. Find the perfect style for every occasion."
+            />
             <main className="max-w-screen-2xl mx-auto bg-gray-100">
                 <CarouselContainer />
                 <CategoriesProduct products={products} />
